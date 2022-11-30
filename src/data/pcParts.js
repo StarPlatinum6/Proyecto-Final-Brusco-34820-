@@ -129,6 +129,10 @@ export const getParts = () => {
   });
 };
 
-// export const getNoteByID = () => {
-    
-// }
+export const getPartByld = (id) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(pcParts.find((part) => part.id === id));
+    }, 2000);
+  });
+};
