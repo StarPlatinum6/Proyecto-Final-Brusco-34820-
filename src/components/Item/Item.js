@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom"
+import Btn from "../Btn/Btn";
+
 const Item = ({ part }) => {
   return (
     <div
@@ -11,7 +14,7 @@ const Item = ({ part }) => {
       </h1>
 
       <h3 className={"text-xs text-justify bg-indigo-200 p-2 rounded-md"}>
-        {part.description}
+        {part.description.slice(0,100)}...
       </h3>
       <img
         src={part.pictureUrl}
@@ -21,6 +24,7 @@ const Item = ({ part }) => {
       <h2 className={"text-sm bg-indigo-200 p-2 rounded-md w-max m-auto"}>
         $ {part.price}
       </h2>
+      <Link to={`/product/${part.id}`}><Btn className={"bg-slate-300 text-xs py-1 px-3 rounded-md"}>Detalle del Producto</Btn></Link>
     </div>
   );
 };

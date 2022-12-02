@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   // const [show, setShow] = useState(true);
@@ -13,9 +14,23 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar />
-      <ItemListContainer greeting="Lista de Productos" />
-      <ItemDetailContainer/>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route
+            path="/"
+            element={<ItemListContainer greeting="Lista de Productos" />}
+          />
+          <Route 
+            path="/category/:categoryId"
+            element={<ItemListContainer />}
+          />
+          <Route
+            path="/product/:productId"
+            element={<ItemDetailContainer />}
+          />
+        </Routes>
+      </BrowserRouter>
       <h1>Footer</h1>
     </div>
   );

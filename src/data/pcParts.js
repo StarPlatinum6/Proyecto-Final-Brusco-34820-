@@ -76,7 +76,7 @@ const pcParts = [
     category: 'PSU',
     title: 'Thermaltake Tr-600w 80 Plus',
     price: 18000,
-    description: 'Con la incorporación de diversos componentes de alta calidad en la nueva serie Smart. modelos que se clasifican desde los 500W hasta los 700W – Ahorra energía a través de su alta eficiencia de hasta un 86%, adaptándose a los requisitos más exigentes.',
+    description: 'Con la incorporación de diversos componentes de alta calidad en la nueva serie Smart. modelos que se clasifican desde los 500W hasta los 700W - Ahorra energía a través de su alta eficiencia de hasta un 86%, adaptándose a los requisitos más exigentes.',
     pictureUrl: 'https://http2.mlstatic.com/D_NQ_NP_914208-MLA49800915400_042022-W.webp' 
   },
   {
@@ -125,14 +125,22 @@ export const getParts = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pcParts);
-    }, 2000);
+    }, 1000);
   });
 };
 
-export const getPartByld = (id) => {
+export const getPartsByCategory = (categoryId) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(pcParts.filter((part) => part.category === categoryId));
+    }, 1000);
+  });
+};
+
+export const getPartById = (id) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pcParts.find((part) => part.id === id));
-    }, 2000);
+    }, 1000);
   });
 };

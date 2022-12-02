@@ -34,10 +34,9 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         >
           Sumar
         </button>
-        <input
-          value={count}
+        <span
           className="text-center w-10 text-sm rounded-md bg-slate-400"
-        ></input>
+        >{count}</span>
         <button
           onClick={() => decrement()}
           className="bg-slate-300 px-2 py-1 rounded-md m-2 font-light hover:bg-slate-500 transition-all text-xs"
