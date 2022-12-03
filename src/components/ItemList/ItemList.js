@@ -11,6 +11,7 @@ const ItemList = () => {
 
   useEffect(() => {
     if (!categoryId) {
+      setIsLoading(true);
       getParts()
         .then((response) => {
           setParts(response);
@@ -22,6 +23,7 @@ const ItemList = () => {
           setIsLoading(false);
         });
     } else {
+      setIsLoading(true);
       getPartsByCategory(categoryId)
         .then((response) => {
           setParts(response);
@@ -36,15 +38,25 @@ const ItemList = () => {
   }, [categoryId]);
 
   if (isLoading) {
-    return <h1>Cargando...</h1>;
+    return (
+      <div className="flex justify-center my-6 p-8 text-4xl text-slate-100 bg-slate-500 drop-shadow-xl rounded-lg animate-pulse items-center w-96 tracking-widest font-serif">
+        <h1>CARGANDO...</h1>
+        <img className="animate-spin ml-4 h-8 w-8 opacity-90" alt="" src="/images/spinner.svg"/>
+      </div>
+    );
   }
 
   return (
-    <div className="grid grid-cols-3 gap-2 p-1 font-sans">
-      {parts.map((part) => (
-        <Item key={part.id} part={part} />
-      ))}
-    </div>
+    <>
+      <h1 className="-my-4 pb-8 text-5xl font-thin tracking-wider text-slate-100 font-serif">
+        {categoryId}
+      </h1>
+      <div className="grid grid-cols-3 gap-12 p-8 font-sans">
+        {parts.map((part) => (
+          <Item key={part.id} part={part} />
+        ))}
+      </div>
+    </>
   );
 };
 

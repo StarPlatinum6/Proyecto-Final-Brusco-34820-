@@ -1,7 +1,7 @@
 const pcParts = [
   {
     id: 1,
-    category: 'Motherboard',
+    category: 'MOTHERBOARD',
     title: 'Asus Prime H510m-e Intel S1200',
     price: 23500,
     description: 'PLACA MOTHER ASUS H510 (LGA 1200) micro ATX con PCIe 4.0, ranura M.2 de 32Gbps, Intel 1 Gb Ethernet, DisplayPort, HDMI, D-Sub, USB 3.2 Gen 1 Tipo A, SATA 6Gbps, encabezado COM, encabezado RGB.',
@@ -9,7 +9,7 @@ const pcParts = [
   },
   {
     id: 2,
-    category: 'Motherboard',
+    category: 'MOTHERBOARD',
     title: 'Aorus B560 Pro Ax',
     price: 46000,
     description: 'El B560 AORUS PRO AX viene con una solución de energía mejorada, un diseño de enfriamiento increíble, todo el diseño PCIe 4.0 y una conectividad sobresaliente para elevar su experiencia de juego al siguiente nivel.',
@@ -17,7 +17,7 @@ const pcParts = [
   },
   {
     id: 3,
-    category: 'Motherboard',
+    category: 'MOTHERBOARD',
     title: 'Asus Prime X570-p Am4',
     price: 55600,
     description: 'Socket AMD AM4: Listo para los procesadores AMD Ryzen™ de 3ra y 2da generación. Solución de energía mejorada: 8+4 fases de poder DrMOS, conectores ProCool, bobinas de aleación y condensadores duraderos para un suministro estable de energía.',
@@ -98,7 +98,7 @@ const pcParts = [
   {
     id: 13,
     category: 'GPU',
-    title: 'Nvidia GeForce RTX 2060 Super',
+    title: 'MSI Nvidia GeForce RTX 2060 Super',
     price: 120000,
     description: 'Como cuenta con 2176 núcleos, los cálculos para el procesamiento de gráficos se realizarán de forma simultánea logrando un resultado óptimo del trabajo de la placa. Esto le permitirá ejecutar lecturas dispersas y rápidas de y hacia la GPU.',
     pictureUrl: 'https://http2.mlstatic.com/D_NQ_NP_851950-MLA42349749318_062020-W.webp' 
@@ -106,7 +106,7 @@ const pcParts = [
   {
     id: 14,
     category: 'GPU',
-    title: 'Nvidia GeForce RTX 3080Ti',
+    title: 'Zotac Nvidia GeForce RTX 3080Ti AMP!',
     price: 350000,
     description: 'Cuenta con 10240 núcleos, por lo que la interfaz de la placa será algo sorprendente. Este tipo de estructura es apropiado para el procesamiento de tecnologías más complejas y modernas caracterizadas por grandes volúmenes de datos.',
     pictureUrl: 'https://http2.mlstatic.com/D_NQ_NP_915648-MLA51901368261_102022-W.webp' 
@@ -114,7 +114,7 @@ const pcParts = [
   {
     id: 15,
     category: 'GPU',
-    title: 'Nvidia GeForce RTX 3090Ti',
+    title: 'PNY Nvidia GeForce RTX 3090Ti',
     price: 600000,
     description: 'Nvidia es el fabricante líder de placas de video; su calidad asegura una experiencia positiva en el desarrollo del motor gráfico de tu computadora. Además, sus procesadores usan tecnología de punta para que puedas disfrutar de un producto veloz y duradero.',
     pictureUrl: 'https://http2.mlstatic.com/D_NQ_NP_695591-MLA52470282556_112022-W.webp' 
@@ -125,7 +125,7 @@ export const getParts = () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pcParts);
-    }, 1000);
+    }, 2000);
   });
 };
 
@@ -133,7 +133,7 @@ export const getPartsByCategory = (categoryId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pcParts.filter((part) => part.category === categoryId));
-    }, 1000);
+    }, 2000);
   });
 };
 
@@ -141,6 +141,6 @@ export const getPartById = (id) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(pcParts.find((part) => part.id === id));
-    }, 1000);
+    }, 2000);
   });
 };

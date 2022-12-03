@@ -22,45 +22,43 @@ const ItemCount = ({ stock, initial, onAdd }) => {
   };
 
   return (
-    <div className="bg-slate-400 containerfont-sans">
-      <h1 className="p-2 tracking-wider text-slate-800">Contador de Items</h1>
-      <h3 className="text-slate-800">
+    <div className="font-sans flex text-slate-50">
+      {/* <h3 className="text-slate-800">
         Productos en el carrito: {stock - stockProd}
-      </h3>
-      <div>
-        <button
-          onClick={() => increment()}
-          className="bg-slate-300 px-2 py-1 rounded-md m-2 font-light hover:bg-slate-500 transition-all text-xs"
-        >
-          Sumar
-        </button>
-        <span
-          className="text-center w-10 text-sm rounded-md bg-slate-400"
-        >{count}</span>
-        <button
-          onClick={() => decrement()}
-          className="bg-slate-300 px-2 py-1 rounded-md m-2 font-light hover:bg-slate-500 transition-all text-xs"
-        >
-          Restar
-        </button>
-      </div>
+      </h3> */}
+      <div className="w-64 flex items-center justify-center">
+        <span className="w-24 text-2xl h-20 flex items-center justify-center">{count}</span>
 
-      <button
-        onClick={() => onAdd(count, stockProd, setStock)}
-        className="bg-slate-300 px-2 py-1 rounded-md m-2 font-light hover:bg-slate-500 transition-all text-xs"
-      >
-        Agregar al carrito
-      </button>
-      <button
-        onClick={() => reset()}
-        className="bg-slate-300 px-2 py-1 rounded-md m-2 font-light hover:bg-slate-500 transition-all text-xs"
-      >
-        Resetear
-      </button>
-      <div className="flex justify-center">
-        <h4 className="p-2 text-slate-800">Stock inicial: {stock}</h4>
-        <h4 className="p-2 text-slate-800">Stock disponible: {stockProd}</h4>
+        <div className="flex flex-col">
+          <button
+            onClick={() => increment()}
+            className="px-2 py-1 font-light hover:bg-indigo-700 transition-all text-2xl rounded-xl"
+          >
+            +
+          </button>
+
+          <button
+            onClick={() => decrement()}
+            className="px-2 py-1 font-light hover:bg-indigo-700 transition-all text-2xl rounded-xl"
+          >
+            -
+          </button>
+        </div>
       </div>
+      <div className="w-64">
+          <button
+            onClick={() => onAdd(count, stockProd, setStock)}
+            className="bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40 shadow-md"
+          >
+            Agregar al carrito
+          </button>
+          <button
+            onClick={() => reset()}
+            className="bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40"
+          >
+            Resetear
+          </button>
+        </div>
     </div>
   );
 };

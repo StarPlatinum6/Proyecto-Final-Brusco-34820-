@@ -1,9 +1,9 @@
 import React from "react";
-// import { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,25 +13,19 @@ function App() {
   // { show ? <ItemListContainer/> : null }
 
   return (
-    <div className="App">
+    <div className="App bg-slate-400 h-max">
       <BrowserRouter>
         <NavBar />
         <Routes>
           <Route
             path="/"
-            element={<ItemListContainer greeting="Lista de Productos" />}
+            element={<ItemListContainer greeting="LISTA DE PRODUCTOS" />}
           />
-          <Route 
-            path="/category/:categoryId"
-            element={<ItemListContainer />}
-          />
-          <Route
-            path="/product/:productId"
-            element={<ItemDetailContainer />}
-          />
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/product/:productId" element={<ItemDetailContainer />} />
         </Routes>
       </BrowserRouter>
-      <h1>Footer</h1>
+      <Footer />
     </div>
   );
 }

@@ -1,12 +1,11 @@
 import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = ({ greeting }) => {
-
   return (
     <>
-      <div className="tracking-widest bg-zinc-300 p-2 mx-auto">
-        <h1>{greeting}</h1>
-        <ItemList/>
+      <div className="tracking-widest p-5 flex justify-center flex-col items-center">
+        <h1 className="p-4 text-4xl font-thin tracking-widest font-serif text-slate-100">{greeting}</h1>
+        <ItemList />
       </div>
     </>
   );
