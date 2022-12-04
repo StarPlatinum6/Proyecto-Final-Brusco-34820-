@@ -48,7 +48,7 @@ const ItemList = () => {
 
   return (
     <>
-      <h1 className="-my-4 pb-8 text-5xl font-thin tracking-wider text-slate-100 font-serif">
+      <h1 className="-my-4 pb-8 text-5xl font-thin tracking-wider text-slate-500 font-serif">
         {categoryId}
       </h1>
       <div className="grid grid-cols-3 gap-12 p-8 font-sans">

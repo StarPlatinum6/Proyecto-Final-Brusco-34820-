@@ -13,7 +13,7 @@ function App() {
   // { show ? <ItemListContainer/> : null }
 
   return (
-    <div className="App bg-slate-400 h-max">
+    <div className="App bg-slate-50 h-max">
       <BrowserRouter>
         <NavBar />
         <Routes>
