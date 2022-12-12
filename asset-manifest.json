@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/PreEntrega2-Brusco-34820/static/css/main.baa774f3.css",
+    "main.js": "/PreEntrega2-Brusco-34820/static/js/main.c20c6198.js",
+    "static/js/787.adca0210.chunk.js": "/PreEntrega2-Brusco-34820/static/js/787.adca0210.chunk.js",
+    "static/media/MontserratAlt1-Light.otf": "/PreEntrega2-Brusco-34820/static/media/MontserratAlt1-Light.02ae258fb3e34dcbed88.otf",
+    "index.html": "/PreEntrega2-Brusco-34820/index.html",
+    "main.baa774f3.css.map": "/PreEntrega2-Brusco-34820/static/css/main.baa774f3.css.map",
+    "main.c20c6198.js.map": "/PreEntrega2-Brusco-34820/static/js/main.c20c6198.js.map",
+    "787.adca0210.chunk.js.map": "/PreEntrega2-Brusco-34820/static/js/787.adca0210.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.baa774f3.css",
+    "static/js/main.c20c6198.js"
+  ]
+}
