@@ -1,10 +1,29 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { CartContext } from "../../context/CartContext"
 import { Link } from "react-router-dom"
 
 const Cart = () => {
 
   const { cart, clearList, isCartEmpty, total, removeItem } = useContext(CartContext)
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => { 
+      setIsLoading(false)
+     }, 2000)
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="tracking-widest bg-slate-50 p-16 mx-auto max-w-screen-lg flex justify-center">
+        <div className="flex justify-center my-6 p-8 text-4xl text-slate-100 bg-slate-500 drop-shadow-xl rounded-lg animate-pulse items-center w-96 tracking-widest font-serif">
+          <h1>CARGANDO...</h1>
+          <img className="animate-spin ml-4 h-8 w-8 opacity-90" alt="" src="/images/spinner.svg"/>
+      </div>
+    </div>
+    );
+  }
 
   if (isCartEmpty) {
     return (

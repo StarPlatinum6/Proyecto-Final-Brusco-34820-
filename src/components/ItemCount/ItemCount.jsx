@@ -23,12 +23,8 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   return (
     <div className="font-sans flex text-slate-50">
-      {/* <h3 className="text-slate-800">
-        Productos en el carrito: {stock - stockProd}
-      </h3> */}
       <div className="w-64 flex items-center justify-center">
         <span className="w-24 text-2xl h-20 flex items-center justify-center">{count}</span>
-
         <div className="flex flex-col">
           <button
             onClick={() => increment()}

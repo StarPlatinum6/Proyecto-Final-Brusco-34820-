@@ -136,8 +136,12 @@ const ItemDetail = () => {
           { cartEmpty 
           ? <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} /> 
           : <>
-              <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md"><Link to={`/`}>Seguir comprando</Link></button>
-              <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md"><Link to={`/cart`}>Finalizar la compra</Link></button>
+              <Link to={`/`}>
+                <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Seguir comprando</button>
+              </Link>
+              <Link to={`/cart`}>
+                <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Finalizar la compra</button>
+              </Link>
             </>
            }
         </div>

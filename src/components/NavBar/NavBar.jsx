@@ -61,7 +61,14 @@ const NavBar = () => {
           PLACAS DE VIDEO
         </Btn>
       </NavLink>
-      <CartWidget className="flex flex-col justify-center items-center hover:bg-slate-400 hover:border-slate-400 hover:shadow-slate-400 rounded-md hover:shadow-lg transition-all duration-300 mx-1 py-2 w-20 min-w-fit" />
+      <NavLink
+        to="/cart"
+        className={({ isActive }) =>
+          isActive ? "bg-slate-400 rounded-md shadow-lg shadow-slate-400" : ""
+        }
+      >
+        <CartWidget className="flex flex-col justify-center items-center hover:bg-slate-400 hover:border-slate-400 hover:shadow-slate-400 rounded-md hover:shadow-lg transition-all duration-300 mx-1 py-4 w-20 min-w-fit" />
+      </NavLink>
     </nav>
   );
 };
