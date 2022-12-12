@@ -39,6 +39,9 @@ export const CartContextProvider = ({ children }) => {
   const removeItem = (id) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
+    if (updatedCart.length === 0) {
+      setIsCartEmpty(true)
+    }
   };
 
   const clearList = () => {
