@@ -1,16 +1,25 @@
-import { getPartById } from "../../data/pcParts";
 import { useEffect, useState } from "react";
-import ItemCount from "../ItemCount/ItemCount";
+
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { Link } from "react-router-dom";
+
+import { getPartById } from "../../data/pcParts";
+import ItemCount from "../ItemCount/ItemCount";
+
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
+
+
 
 const ItemDetail = () => {
   const [part, setParts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cartEmpty, setCartEmpty] = useState(true);
 
+  const { addToCart } = useContext(CartContext)
 
   let { productId } = useParams();
   const prodId = parseInt(productId);
@@ -54,7 +63,8 @@ const ItemDetail = () => {
           text: `Agregaste ${quantity} ${unit} al carrito. Stock restante: ${stockProd - quantity} ${unit2}.`,
           confirmButtonText: "¡Entendido!",
         });
-        setCartEmpty(false)
+        setCartEmpty(false);
+        addToCart(part, quantity);
       }
     } else {
       MySwal.fire({
@@ -125,7 +135,11 @@ const ItemDetail = () => {
           </div>
           { cartEmpty 
           ? <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} /> 
-          : <button className="font-sans font-light text-2xl text-slate-50 bg-indigo-600 p-5 rounded-md m-3 hover:bg-indigo-700 transition-all w-60 shadow-md"><Link to={`/cart`}>Finalizar Compra</Link></button> }
+          : <>
+              <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md"><Link to={`/`}>Seguir comprando</Link></button>
+              <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md"><Link to={`/cart`}>Finalizar la compra</Link></button>
+            </>
+           }
         </div>
       </div>
     </div>
