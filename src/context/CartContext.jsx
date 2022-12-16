@@ -17,6 +17,9 @@ export const CartContextProvider = ({ children }) => {
       setCart([...cart, itemToAdd]);
       setIsCartEmpty(false)
     } else {
+      const itemToUpdate = cart.findIndex((obj => obj.id === itemToAdd.id));
+      cart[itemToUpdate].quantity = itemToAdd.quantity;
+      cart[itemToUpdate].total = itemToAdd.total;
       setTotal(cart.reduce((acc, currentValue) => acc + currentValue.total, 0))
     }
   };
