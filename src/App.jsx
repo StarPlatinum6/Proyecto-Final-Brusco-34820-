@@ -29,8 +29,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout/:orderId" element={<Checkout />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
-        <Footer />
       </CartContextProvider>
     </div>
   );
