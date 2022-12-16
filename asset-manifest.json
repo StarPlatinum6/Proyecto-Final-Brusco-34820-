@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Proyecto-Final-Brusco-34820/static/css/main.3f6501a7.css",
-    "main.js": "/Proyecto-Final-Brusco-34820/static/js/main.e6dbc3f3.js",
+    "main.css": "/Proyecto-Final-Brusco-34820/static/css/main.7f2ceca2.css",
+    "main.js": "/Proyecto-Final-Brusco-34820/static/js/main.2a628be8.js",
     "static/media/MontserratAlt1-Light.otf": "/Proyecto-Final-Brusco-34820/static/media/MontserratAlt1-Light.02ae258fb3e34dcbed88.otf",
     "index.html": "/Proyecto-Final-Brusco-34820/index.html",
-    "main.3f6501a7.css.map": "/Proyecto-Final-Brusco-34820/static/css/main.3f6501a7.css.map",
-    "main.e6dbc3f3.js.map": "/Proyecto-Final-Brusco-34820/static/js/main.e6dbc3f3.js.map"
+    "main.7f2ceca2.css.map": "/Proyecto-Final-Brusco-34820/static/css/main.7f2ceca2.css.map",
+    "main.2a628be8.js.map": "/Proyecto-Final-Brusco-34820/static/js/main.2a628be8.js.map"
   },
   "entrypoints": [
-    "static/css/main.3f6501a7.css",
-    "static/js/main.e6dbc3f3.js"
+    "static/css/main.7f2ceca2.css",
+    "static/js/main.2a628be8.js"
   ]
 }
