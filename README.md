@@ -25,11 +25,11 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 
 | Front-End         |
 | ----------------- |
-| HTML			    |
+| React.JS          |
+| JSX			    |
 | Tailwind 3 CSS    |
 | HeroIcons React   |
 | Headless UI React |
-| React.JS          |
 | Firebase          |
 
 | NPM Packages      |
