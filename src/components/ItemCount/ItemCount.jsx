@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import Btn from "../Btn/Btn";
+
 const ItemCount = ({ stock, initial, onAdd }) => {
   const [count, setCount] = useState(initial);
   const [stockProd, setStock] = useState(stock);
@@ -26,34 +28,34 @@ const ItemCount = ({ stock, initial, onAdd }) => {
       <div className="w-64 flex items-center justify-center">
         <span className="w-24 text-2xl h-20 flex items-center justify-center">{count}</span>
         <div className="flex flex-col">
-          <button
-            onClick={() => increment()}
+          <Btn
+            fn={() => increment()}
             className="px-2 py-1 font-light hover:bg-indigo-700 transition-all text-2xl rounded-xl"
           >
             +
-          </button>
+          </Btn>
 
-          <button
-            onClick={() => decrement()}
+          <Btn
+            fn={() => decrement()}
             className="px-2 py-1 font-light hover:bg-indigo-700 transition-all text-2xl rounded-xl"
           >
             -
-          </button>
+          </Btn>
         </div>
       </div>
       <div className="w-64">
-          <button
-            onClick={() => onAdd(count, stockProd, setStock)}
+          <Btn
+            fn={() => onAdd(count, stockProd, setStock)}
             className="bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40 shadow-md"
           >
             Agregar al carrito
-          </button>
-          <button
-            onClick={() => reset()}
+          </Btn>
+          <Btn
+            fn={() => reset()}
             className="bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40"
           >
             Resetear
-          </button>
+          </Btn>
         </div>
     </div>
   );

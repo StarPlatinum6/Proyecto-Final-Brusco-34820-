@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 import ItemCount from "../ItemCount/ItemCount";
+import Btn from "../Btn/Btn";
 
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
@@ -141,10 +142,10 @@ const ItemDetail = () => {
           ? <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} /> 
           : <>
               <Link to={`/`}>
-                <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Seguir comprando</button>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Seguir comprando</Btn>
               </Link>
               <Link to={`/cart`}>
-                <button className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Finalizar la compra</button>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Finalizar la compra</Btn>
               </Link>
             </>
            }

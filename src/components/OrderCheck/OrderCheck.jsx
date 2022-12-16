@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseconfig";
 
+import Btn from "../Btn/Btn";
+
 const OrderCheck = () => {
   const [orderId, setOrderId] = useState([]);
   const [ordersId, setOrdersId] = useState([]);
@@ -29,14 +31,14 @@ const OrderCheck = () => {
       ></input>
       {ordersId.some((item) => item.id === orderId) ? (
         <Link to={`/checkout/${orderId}`}>
-          <button className="font-sans font-light text-lg text-slate-50 bg-green-500 p-3 rounded-md m-3 hover:bg-green-700 transition-all w-48 shadow-md">
+          <Btn className="font-sans font-light text-lg text-slate-50 bg-green-500 p-3 rounded-md m-3 hover:bg-green-700 transition-all w-48 shadow-md">
             Verificar Orden
-          </button>
+          </Btn>
         </Link>
       ) : (
-        <button className="font-sans font-light text-lg text-slate-50 bg-red-500 p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:">
+        <Btn className="font-sans font-light text-lg text-slate-50 bg-red-500 p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:">
           Order ID Inválido
-        </button>
+        </Btn>
       )}
     </div>
   );

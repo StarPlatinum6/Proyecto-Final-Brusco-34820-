@@ -16,7 +16,7 @@ const Footer = () => {
           por Nicolás Brusco para la comisión 34820
         </span>
       </div>
-      <OrderCheck/>
+      <OrderCheck />
     </>
   );
 };
