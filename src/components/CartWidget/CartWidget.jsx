@@ -15,9 +15,9 @@ const CartWidget = (props) => {
           : ""
         }
         <img
-          src={"/images/cart2.svg"}
+          src="https://www.svgrepo.com/show/147221/shopping-cart.svg"
           alt="img-cart"
-          className="w-12 px-1 py-1"
+          className="w-12 px-1 py-1 drop-shadow-2xl contrast-50"
         />
       </Btn>
     </>

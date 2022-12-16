@@ -8,8 +8,8 @@ const Footer = () => {
           Diseñado en React.JS
         </span>
         <img
-          src="/images/react.svg"
-          className="animate-pulse w-12"
+          src="https://www.svgrepo.com/show/372933/react.svg"
+          className="animate-pulse w-12 drop-shadow-2xl contrast-50"
           alt=""
         ></img>
         <span className="animate-pulse text-slate-600 pl-1">
