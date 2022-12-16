@@ -1,6 +1,6 @@
 # Ephemer Gaming
 
-<iframe src='https://gfycat.com/ifr/SatisfiedGargantuanFreshwatereel' frameborder='0' scrolling='no' allowfullscreen width='640' height='520'></iframe>
+![](https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820/blob/main/public/images/EphemerGaming.gif)
 
 [Español](#es) - [English](#en)
 
@@ -31,7 +31,7 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 | Headless UI React |
 | React.JS          |
 | Firebase          |
-| ----------------- |
+
 | NPM Packages      |
 | ----------------- |
 | Formik            |
