@@ -1,74 +1,119 @@
 # Ephemer Gaming
 
-Proyecto en React JS de una tienda de gaming.
+<iframe src='https://gfycat.com/ifr/SatisfiedGargantuanFreshwatereel' frameborder='0' scrolling='no' allowfullscreen width='640' height='520'></iframe>
 
-## Getting Started with Create React App
+[Español](#es) - [English](#en)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<a name="ES"></a>
 
-## Available Scripts
+# Índice
 
-In the project directory, you can run:
+1. [Descripción](#description-es)
+2. [Tecnologías utilizadas](#technologies-es)
+3. [Autor](#author-es)
+4. [Deploy](#deploy-es)
 
-### `npm start`
+<a name="description-es"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 1. Descripción
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del curso de React.JS de Coderhouse. Creé una tienda en línea de artículos de computación, la misma es capaz de mostrar los productos desde una base de datos, incluyendo sus detalles. El usuario podrá navegar por cada uno de los artículos y realizar compras en la aplicación, la misma se encargará de gestionar una órden única, manipulando los datos del usuario y del pedido, también actualizará el stock de los items a medida que son comprados.
 
-### `npm test`
+<a name="technologies-es"></a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Tecnologías utilizadas
 
-### `npm run build`
+| Front-End         |
+| ----------------- |
+| HTML			    |
+| Tailwind 3 CSS    |
+| HeroIcons React   |
+| Headless UI React |
+| React.JS          |
+| Firebase          |
+| ----------------- |
+| NPM Packages      |
+| ----------------- |
+| Formik            |
+| Yup               |
+| GH-Pages          |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<a name="author-es"></a>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 3. Autor
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Nicolás Brusco | Desarrollador web Front-End / React.JS
 
-### `npm run eject`
+|Redes | Enlace |
+|---------------------------|----------------|
+|GitHub |[StarPlatinum6](https://github.com/StarPlatinum6) |
+|Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
+|Instagram |[nicobrusco](https://instagram.com/nicobrusco)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<a name="deploy-es"></a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 4. Deploy
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [Ephemer Gaming](https://starplatinum6.github.io/Proyecto-Final-Brusco-34820/)
 
-## Learn More
+&nbsp;
+&nbsp;
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a name="EN"></a>
 
-### Code Splitting
+# Index
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. [About](#description-en)
+2. [Tech Stack](#technologies-en)
+3. [Author](#author)
+4. [Deploy](#deploy-en)
 
-### Analyzing the Bundle Size
+<a name="description-en"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 1. About
 
-### Making a Progressive Web App
+Ephemer Gaming is an e-commerce project developed for commission 34820 of the Coderhouse React.JS course. I created an online store of computer articles, able to display products from a database, including their details. The user will be able to browse each of the items and make purchases, the app will be responsible for managing a orders, manipulating user and order data, it will also update the item stock as they are purchased.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<a name="technologies-en"></a>
 
-### Advanced Configuration
+## 2. Tech stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+| Front-End         |
+| ----------------- |
+| HTML			    |
+| Tailwind 3 CSS    |
+| HeroIcons React   |
+| Headless UI React |
+| React.JS          |
+| Firebase          |
+| ----------------- |
+| NPM Packages      |
+| ----------------- |
+| Formik            |
+| Yup               |
+| GH-Pages          |
 
-### Deployment
+<a name="author-en"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 3. Author
 
-### `npm run build` fails to minify
+Nicolás Brusco | Front-End web Developer / React.JS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+|Platform | Link |
+|---------------------------|----------------|
+|GitHub |[StarPlatinum6](https://github.com/StarPlatinum6) |
+|Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
+|Instagram |[nicobrusco](https://instagram.com/nicobrusco)
+
+
+
+<a name="deploy-en"></a>
+
+## 4. Deploy
+
+To test the e-commerce app, access through the following link:
+
+- [Ephemer Gaming](https://starplatinum6.github.io/Proyecto-Final-Brusco-34820/)
