@@ -25,8 +25,8 @@ const OrderCheck = () => {
     <div className="flex items-center justify-center bg-slate-100 text-2xl -mt-10 pb-4">
       <input
         type="text"
-        placeholder="Ingrese un Order ID Válido"
-        className="text-slate-600 p-2 rounded-lg border-4 border-indigo-500 bg-indigo-100 w-80"
+        placeholder="Ingrese Order ID para ver estado"
+        className="text-slate-600 p-2 rounded-lg border-4 border-indigo-500 bg-indigo-100 w-80 text-xl"
         onChange={(e) => setOrderId(e.target.value)}
       ></input>
       {ordersId.some((item) => item.id === orderId) ? (
