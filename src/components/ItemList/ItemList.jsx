@@ -1,7 +1,9 @@
-import { getParts, getPartsByCategory } from "../../data/pcParts";
 import { useState, useEffect } from "react";
 import Item from "../Item/Item";
 import { useParams } from "react-router-dom";
+
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseconfig";
 
 const ItemList = () => {
   const [parts, setParts] = useState([]);
@@ -10,38 +12,34 @@ const ItemList = () => {
   const { categoryId } = useParams();
 
   useEffect(() => {
-    if (!categoryId) {
-      setIsLoading(true);
-      getParts()
-        .then((response) => {
-          setParts(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
+    setIsLoading(true);
+
+    const collectionPc = categoryId
+      ? query(collection(db, "pcParts"), where("category", "==", categoryId))
+      : collection(db, "pcParts");
+
+    getDocs(collectionPc)
+      .then((response) => {
+        const partsAdapted = response.docs.map((doc) => {
+          const data = doc.data();
+          return { id: doc.id, ...data };
         });
-    } else {
-      setIsLoading(true);
-      getPartsByCategory(categoryId)
-        .then((response) => {
-          setParts(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
+        setParts(partsAdapted);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [categoryId]);
 
   if (isLoading) {
     return (
       <div className="flex justify-center my-6 p-8 text-4xl text-slate-100 bg-slate-500 drop-shadow-xl rounded-lg animate-pulse items-center w-96 tracking-widest font-serif">
         <h1>CARGANDO...</h1>
-        <img className="animate-spin ml-4 h-8 w-8 opacity-90" alt="" src="/images/spinner.svg"/>
+        <img
+          className="animate-spin ml-4 h-8 w-8 opacity-90"
+          alt=""
+          src="/images/spinner.svg"
+        />
       </div>
     );
   }

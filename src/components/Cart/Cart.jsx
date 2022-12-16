@@ -2,17 +2,99 @@ import { useContext, useState, useEffect } from "react"
 import { CartContext } from "../../context/CartContext"
 import { Link } from "react-router-dom"
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+import CartForm from "../CartForm/CartForm";
+
+import { doc, setDoc, updateDoc, increment, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseconfig";
+
 const Cart = () => {
 
   const { cart, clearList, isCartEmpty, total, removeItem } = useContext(CartContext)
 
   const [isLoading, setIsLoading] = useState(true);
+  const [orderId, setOrderId] = useState('')
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     setTimeout(() => { 
       setIsLoading(false)
-     }, 2000)
+     }, 500)
   }, []);
+
+  const showCartForm = () => {
+    return new Promise((resolve) => {
+      MySwal.fire({
+        title: "Datos para la compra",
+        icon: 'question',
+        html: (
+          <CartForm
+            onSubmit={data => {
+              resolve(data);
+            }}
+            onClose={() => Swal.close()}
+          />
+        ),
+        showConfirmButton: false
+      });
+    })
+  }
+
+  const sendOrder = async (data) => {
+    const itemsDb = cart.map(item => ({
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      quantity: item.quantity,
+      pictureUrl: item.pictureUrl,
+    }));
+
+    const order = {
+      buyer: data,
+      items: itemsDb,
+      total: total,
+      date: serverTimestamp(),
+    };
+
+    const ordersCollectionRef = doc(collection(db, "orders"));
+    setOrderId(ordersCollectionRef.id)
+
+    await setDoc(ordersCollectionRef, order)
+
+    clearList();
+
+    itemsDb.map(async (item) => {
+      const itemRef = doc(db, "pcParts", item.id);
+      await updateDoc(itemRef, {
+        stock: increment(-item.quantity)
+      });
+    })
+
+    if (ordersCollectionRef.id) afterBuy(ordersCollectionRef.id);
+
+  }
+
+  const afterBuy = (orderId) => {
+    MySwal.fire({
+      title: "Compra exitosa!",
+      text: `Número de órden: ${orderId}`,
+      icon: 'success',
+      footer: 'A continuación podrá dirigirse al detalle de su orden.',
+      showConfirmButton: false
+    });
+} 
+
+  const handleBuy = () => {
+    showCartForm()
+      .then((data) => {
+        sendOrder(data);
+    })
+      .catch((er) => console.log(er))
+  } 
+
 
   if (isLoading) {
     return (
@@ -30,6 +112,11 @@ const Cart = () => {
       <div className="m-16">
         <h1 className="mt-8 pb-8 text-5xl font-thin tracking-wider text-slate-500 font-serif uppercase">Carrito vacío</h1>
         <button className="font-sans font-light text-xl text-slate-50 bg-indigo-500 p-3 rounded-md m-3 hover:bg-indigo-700 transition-all w-48 shadow-md"><Link to={`/`}>Volver a la tienda</Link></button>
+        {
+          orderId
+          ? <button className="font-sans font-light text-xl text-slate-50 bg-indigo-500 p-3 rounded-md m-3 hover:bg-indigo-700 transition-all w-48 shadow-md"><Link to={`/checkout/${orderId}`}>Ir a información de la orden</Link></button>
+          : null
+        }
       </div>
     )
   }
@@ -52,8 +139,14 @@ const Cart = () => {
           </div>
         ))}
       </>
-      <div className="text-4xl p-6">
-        <button className="m-3 p-3 border text-red-700 bg-red-400/20 hover:bg-red-400/60 transition-all rounded-lg font-serif" onClick={clearList}>Borrar todo</button>
+      <div className="text-3xl p-6">
+        <div className="flex justify-around">
+          <button className="m-3 p-3 border text-red-700 bg-red-400/20 hover:bg-red-400/60 transition-all rounded-lg font-serif" onClick={clearList}>Vaciar Carrito</button>
+          <Link to={`/`}>
+            <button className="m-3 p-3 border text-indigo-700 bg-indigo-400/20 hover:bg-indigo-400/60 transition-all rounded-lg font-serif">Volver a la Tienda</button>
+          </Link>
+          <button className="m-3 p-3 border text-green-700 bg-green-400/20 hover:bg-green-400/60 transition-all rounded-lg font-serif" onClick={handleBuy}>Finalizar Compra</button>
+        </div>
         <p className="mt-8 pb-8 text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">Total de la compra: $ {total}</p>
       </div>
     </>

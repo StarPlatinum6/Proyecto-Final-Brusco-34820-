@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import { getPartById } from "../../data/pcParts";
 import ItemCount from "../ItemCount/ItemCount";
 
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
 
-
+import { getDoc, doc} from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseconfig";
 
 const ItemDetail = () => {
   const [part, setParts] = useState([]);
@@ -22,7 +22,22 @@ const ItemDetail = () => {
   const { addToCart } = useContext(CartContext)
 
   let { productId } = useParams();
-  const prodId = parseInt(productId);
+
+
+  useEffect(() => {
+    const collectionPc = doc(db, "pcParts", productId);
+
+    getDoc(collectionPc)
+      .then((response) => {
+        const data = response.data();
+        const partsAdapted = { id: response.id, ...data };
+        setParts(partsAdapted);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+}, [productId]);
+
 
   const MySwal = withReactContent(Swal);
 
@@ -82,18 +97,6 @@ const ItemDetail = () => {
     }
   };
 
-  useEffect(() => {
-    getPartById(prodId)
-      .then((response) => {
-        setParts(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [prodId]);
 
   if (isLoading) {
     return (
@@ -103,6 +106,7 @@ const ItemDetail = () => {
       </div>
     );
   }
+  
 
   return (
     <div className="flex p-1 font-sans justify-center">
