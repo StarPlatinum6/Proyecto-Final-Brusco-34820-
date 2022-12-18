@@ -84,7 +84,7 @@ const Checkout = () => {
         </div>
       ))}
       <div className="flex justify-center p-6">
-        <p className=" p-3 text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase bg-green-300/50 hover:bg-green-400/50 transition-all max-w-3xl rounded-lg px-12">
+        <p className="p-3 text-2xl lg:text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase bg-green-300/50 hover:bg-green-400/50 transition-all max-w-3xl rounded-lg px-12">
           Total de la compra: $ {total}
         </p>
       </div>

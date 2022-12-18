@@ -48,10 +48,10 @@ export const CartForm = ({ onSubmit, onClose }) => {
             </div >
 
             <div className='p-4'>
-              <Btn className="bg-red-600 p-2 rounded-md m-1 font-light hover:bg-red-700 transition-all w-40 shadow-md shadow-red-700 text-slate-50 text-lg mr-6" fn={onClose} type={"button"}>
+              <Btn className="bg-red-600 p-2 rounded-md m-1 font-light hover:bg-red-700 transition-all w-28 sm:w-40 shadow-md shadow-red-700 text-slate-50 text-lg mr-3 sm:mr-6" fn={onClose} type={"button"}>
                 Cancelar
               </Btn>
-              <Btn className="bg-green-600 p-2 rounded-md m-1 font-light hover:bg-green-700 transition-all w-40 shadow-md shadow-green-700 text-slate-50 text-lg ml-6" type={"submit"}>
+              <Btn className="bg-green-600 p-2 rounded-md m-1 font-light hover:bg-green-700 transition-all w-28 sm:w-40 shadow-md shadow-green-700 text-slate-50 text-lg ml-3 sm:ml-6" type={"submit"}>
                 Comprar
               </Btn>
             </div>

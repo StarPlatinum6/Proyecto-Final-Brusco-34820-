@@ -117,13 +117,13 @@ const ItemDetail = () => {
     <div className="flex p-1 font-sans justify-center">
       <div
         key={part.id}
-        className={"bg-indigo-900/90 rounded-lg p-5 flex flex-row items-center shadow-xl shadow-indigo-900/70 transition-all border-2 border-opacity-80 border-white justify-between gap-16"}
+        className={"bg-indigo-900/90 rounded-lg p-5 flex flex-col md:flex-row items-center shadow-xl shadow-indigo-900/70 transition-all border-2 border-opacity-80 border-white justify-between gap-4 md:gap-16 max-w-sm md:max-w-3xl lg:max-w-4xl"}
       >
         <div className="flex flex-col p-8 w-80 items-center">
           <img
             src={part.pictureUrl}
             alt=""
-            className={"rounded-xl mt-3 max-h-80 w-80 mb-6 -mr-10 scale-125 shadow-lg shadow-slate-100/80 ring-8 ring-indigo-500/50"}
+            className={"rounded-xl mt-3 max-h-80 w-80 mb-6 md:-mr-10 scale-125 shadow-lg shadow-slate-100/80 ring-8 ring-indigo-500/50"}
           />
         </div>
         <div className="w-96">
@@ -146,10 +146,10 @@ const ItemDetail = () => {
           ? <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} /> 
           : <>
               <Link to={`/`}>
-                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Seguir comprando</Btn>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">Seguir comprando</Btn>
               </Link>
               <Link to={`/cart`}>
-                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-40 shadow-md">Finalizar la compra</Btn>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">Finalizar la compra</Btn>
               </Link>
             </>
            }

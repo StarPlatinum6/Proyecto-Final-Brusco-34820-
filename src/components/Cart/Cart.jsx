@@ -142,32 +142,34 @@ const Cart = () => {
   return (
     <>
       <>
-        <h1 className="my-10 text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">
+        <h1 className="my-10 text-2xl md:text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">
           Carrito de Compra
         </h1>
         {cart.map((item) => (
           <div
             key={item.id}
             className={
-              "flex px-16 py-6 my-6 justify-between items-center bg-slate-100"
+              "flex px-4 md:px-8 lg:px-16 py-6 my-6 justify-between items-center bg-slate-100"
             }
           >
             <img
               src={item.pictureUrl}
               alt=""
-              className="rounded-xl max-h-20 w-20 scale-125 shadow-lg shadow-slate-100/80 ring-2 ring-slate-700/50"
+              className="rounded-xl max-h-20 w-28 shadow-lg mr-2 shadow-slate-100/80 ring-2 ring-slate-700/50"
             />
-            <p className="text-md w-96 text-xl text-slate-500 font-medium tracking-wide h-12 flex justify-center items-center">
+            <p className="text-sm lg:text-lg w-60 md:w-96 text-slate-500 font-medium tracking-wide h-12 flex justify-center items-center">
               {item.category} {item.title}
             </p>
-            <p className="text-md w-max-content text-lg text-slate-500 font-medium tracking-wide h-12 flex justify-center items-center">
-              $ {item.price} / {item.quantity} Un.
-            </p>
-            <p className="text-md w-max-content text-3xl text-slate-700 font-medium tracking-wide h-12 flex justify-center items-center">
-              $ {item.price * item.quantity}
-            </p>
+            <div className="flex flex-col items-center sm:flex-row">
+              <p className="sm:text-base md:text-lg lg:text-xl w-max-content text-slate-500 font-medium tracking-wide h-12 w-40 flex justify-center items-center">
+                $ {item.price} / {item.quantity} Un.
+              </p>
+              <p className="w-max-content md:text-xl lg:text-3xl text-slate-700 font-medium tracking-wide h-12 flex justify-center items-center w-24 lg:w-32">
+                $ {item.price * item.quantity}
+              </p>
+            </div>
             <Btn
-              className="text-md w-max-content text-3xl text-red-700 bg-red-400/20 hover:bg-red-400/60 transition-all rounded-md p-3 font-medium tracking-wide h-12 flex justify-center items-center"
+              className="text-md w-max-content lg:text-3xl text-red-700 bg-red-400/20 hover:bg-red-400/60 transition-all rounded-md px-2 py-1 lg:p-3 font-medium tracking-wide lg:h-12 flex justify-center items-center"
               fn={() => removeItem(item.id)}
             >
               X
@@ -175,7 +177,7 @@ const Cart = () => {
           </div>
         ))}
       </>
-      <div className="text-3xl p-6">
+      <div className="sm:text-xl md:text-2xl lg:text-3xl p-6">
         <div className="flex justify-around">
           <Btn
             className="m-3 p-3 border text-red-700 bg-red-400/20 hover:bg-red-400/60 transition-all rounded-lg font-serif"
@@ -195,7 +197,7 @@ const Cart = () => {
             Finalizar Compra
           </Btn>
         </div>
-        <p className="mt-8 pb-8 text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">
+        <p className="mt-8 pb-8 text-2xl md:text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">
           Total de la compra: $ {total}
         </p>
       </div>

@@ -22,21 +22,21 @@ const OrderCheck = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center bg-slate-100 text-2xl -mt-10 pb-4">
+    <div className="flex items-center justify-center bg-slate-100 md:text-2xl -mt-10 pb-4 px-2">
       <input
         type="text"
         placeholder="Ingrese Order ID para ver estado"
-        className="text-slate-600 p-2 rounded-lg border-4 border-indigo-500 bg-indigo-100 w-80 text-xl"
+        className="text-slate-600 p-2 rounded-lg border-4 border-indigo-500 bg-indigo-100 w-80 text-sm sm:text-xl"
         onChange={(e) => setOrderId(e.target.value)}
       ></input>
       {ordersId.some((item) => item.id === orderId) ? (
         <Link to={`/checkout/${orderId}`}>
-          <Btn className="font-sans font-light text-lg text-slate-50 bg-green-500 p-3 rounded-md m-3 hover:bg-green-700 transition-all w-48 shadow-md">
+          <Btn className="font-sans font-light text-sm sm:text-lg text-slate-50 bg-green-500 py-3 sm:p-3 rounded-md m-3 hover:bg-green-700 transition-all w-32 sm:w-48 shadow-md">
             Verificar Orden
           </Btn>
         </Link>
       ) : (
-        <Btn className="font-sans font-light text-lg text-slate-50 bg-red-500 p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:">
+        <Btn className="font-sans font-light text-sm sm:text-lg text-slate-50 bg-red-500 py-3 sm:p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:">
           Order ID Inválido
         </Btn>
       )}
