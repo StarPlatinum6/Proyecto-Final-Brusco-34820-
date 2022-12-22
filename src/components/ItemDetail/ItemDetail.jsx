@@ -8,6 +8,7 @@ import withReactContent from "sweetalert2-react-content";
 
 import ItemCount from "../ItemCount/ItemCount";
 import Btn from "../Btn/Btn";
+import Loading from "../Loading/Loading";
 
 import { useContext } from "react"
 import { CartContext } from "../../context/CartContext"
@@ -100,16 +101,7 @@ const ItemDetail = () => {
 
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center my-6 p-8 text-4xl text-slate-100 bg-slate-500 drop-shadow-xl rounded-lg animate-pulse items-center w-96 tracking-widest font-serif">
-        <h1>CARGANDO...</h1>
-        <img
-          className="animate-spin ml-4 h-8 w-8 opacity-90 invert"
-          alt=""
-          src="https://www.svgrepo.com/show/315795/spinner.svg"
-        />
-      </div>
-    );
+    return <Loading />
   }
   
 
@@ -149,7 +141,7 @@ const ItemDetail = () => {
                 <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">Seguir comprando</Btn>
               </Link>
               <Link to={`/cart`}>
-                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">Finalizar la compra</Btn>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">Dirigirse al carrito</Btn>
               </Link>
             </>
            }

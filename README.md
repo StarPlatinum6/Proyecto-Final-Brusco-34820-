@@ -34,6 +34,7 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 
 | NPM Packages      |
 | ----------------- |
+| SweetAlert2       |
 | Formik            |
 | Yup               |
 | GH-Pages          |

@@ -30,7 +30,7 @@ const OrderCheck = () => {
         onChange={(e) => setOrderId(e.target.value)}
       ></input>
       {ordersId.some((item) => item.id === orderId) ? (
-        <Link to={`/checkout/${orderId}`}>
+        <Link to={`/order/${orderId}`}>
           <Btn className="font-sans font-light text-sm sm:text-lg text-slate-50 bg-green-500 py-3 sm:p-3 rounded-md m-3 hover:bg-green-700 transition-all w-32 sm:w-48 shadow-md">
             Verificar Orden
           </Btn>
@@ -45,5 +45,3 @@ const OrderCheck = () => {
 };
 
 export default OrderCheck;
-
-// aca con ternario con orderID y un SOME
