@@ -11,7 +11,8 @@
 1. [Descripción](#description-es)
 2. [Tecnologías utilizadas](#technologies-es)
 3. [Autor](#author-es)
-4. [Deploy](#deploy-es)
+4. [Ejecutar localmente](#run-es)
+5. [Deploy](#deploy-es)
 
 <a name="description-es"></a>
 
@@ -51,9 +52,20 @@ Nicolás Brusco | Desarrollador web Front-End / React.JS
 |Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
 |Instagram |[nicobrusco](https://instagram.com/nicobrusco)
 
+<a name="run-es"></a>
+
+## 4. Ejecutar localmente
+
+```bash
+$ git clone https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820.git
+$ cd Proyecto-Final-Brusco-34820
+$ npm install
+$ npm start
+```
+
 <a name="deploy-es"></a>
 
-## 4. Deploy
+## 5. Deploy
 
 Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
@@ -70,7 +82,8 @@ Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 1. [About](#description-en)
 2. [Tech Stack](#technologies-en)
 3. [Author](#author)
-4. [Deploy](#deploy-en)
+4. [Run locally](#run-en)
+5. [Deploy](#deploy-en)
 
 <a name="description-en"></a>
 
@@ -109,11 +122,20 @@ Nicolás Brusco | Front-End web Developer / React.JS
 |Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
 |Instagram |[nicobrusco](https://instagram.com/nicobrusco)
 
+<a name="run-en"></a>
 
+## 4. Run locally
+
+```bash
+$ git clone https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820.git
+$ cd Proyecto-Final-Brusco-34820
+$ npm install
+$ npm start
+```
 
 <a name="deploy-en"></a>
 
-## 4. Deploy
+## 5. Deploy
 
 To test the e-commerce app, access through the following link:
 

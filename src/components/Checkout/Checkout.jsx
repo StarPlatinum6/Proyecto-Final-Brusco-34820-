@@ -42,6 +42,12 @@ const Checkout = () => {
       sendOrder(data);
     } catch (er) {
       console.error(er);
+      MySwal.fire({
+        title: "Oops...",
+        text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
+        icon: "error",
+        showConfirmButton: false,
+      });
     } finally {
       MySwal.fire({
         title: "Generando orden...",
@@ -128,6 +134,12 @@ const Checkout = () => {
       }
     } catch (error) {
       console.error(error);
+      MySwal.fire({
+        title: "Oops...",
+        text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
+        icon: "error",
+        showConfirmButton: false,
+      });
     }
   };
 

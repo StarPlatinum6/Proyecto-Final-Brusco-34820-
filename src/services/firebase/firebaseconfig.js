@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDI8mRKcxVbDX113gwqwVyB39NHxWNus3k",
-  authDomain: "ephemer-gaming1337.firebaseapp.com",
-  projectId: "ephemer-gaming1337",
-  storageBucket: "ephemer-gaming1337.appspot.com",
-  messagingSenderId: "841562121490",
-  appId: "1:841562121490:web:a5925e0a565e4294d83fcb"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
