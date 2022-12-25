@@ -40,6 +40,15 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 | Yup               |
 | GH-Pages          |
 
+[SweetAlert2:](https://sweetalert2.github.io/) Se utilizó ésta dependencia para notificar al usuario de los diferentes eventos de la interfaz, tales como cuando se agrega un producto al carrito, informar de errores, y permitir al usuario cargar sus datos para realizar un pedido.
+
+[Formik:](https://formik.org/) Usé Formik para crear un formulario en React, validar y manipular los datos del mismo de manera sencilla.
+
+[Yup:](https://www.npmjs.com/package/yup) Junto con Formik, Yup ayudó a realizar la validación de los datos ingresados en el formulario.
+
+[GH-Pages:](https://www.npmjs.com/package/gh-pages) Esta dependencia fue utlizada para crear un deploy funcional de la aplicación usando Github Pages.
+    * Al no ser compatible con React Router, las imágenes locales no son visualizadas, tampoco se podrá ingresar a otra URL manualmente que no sea el home. Con React Hash Router éste problema no se presenta.
+
 <a name="author-es"></a>
 
 ## 3. Autor
@@ -97,18 +106,28 @@ Ephemer Gaming is an e-commerce project developed for commission 34820 of the Co
 
 | Front-End         |
 | ----------------- |
-| HTML			    |
+| React.JS          |
+| JSX			    |
 | Tailwind 3 CSS    |
 | HeroIcons React   |
 | Headless UI React |
-| React.JS          |
 | Firebase          |
-| ----------------- |
+
 | NPM Packages      |
 | ----------------- |
+| SweetAlert2       |
 | Formik            |
 | Yup               |
 | GH-Pages          |
+
+[SweetAlert2:](https://sweetalert2.github.io/) This dependency was used to notify the user of different interface events, such as when a product is added to the cart, report errors, and allow the user to fill in their data to place an order.
+
+[Formik:](https://formik.org/) I used Formik to create a form in React, validate and manipulate the data in it in a simple way.
+
+[Yup:](https://www.npmjs.com/package/yup) Along with Formik, Yup helped with the form data validation.
+
+[GH-Pages:](https://www.npmjs.com/package/gh-pages) This dependency was used to create a functional deployment of the application using Github Pages.
+    * As it is not compatible with React Router, local images are not displayed, nor can you enter another URL manually other than the home. With React Hash Router we don't have this problem.
 
 <a name="author-en"></a>
 

@@ -9,7 +9,7 @@ const Footer = () => {
         </span>
         <img
           src="https://www.svgrepo.com/show/372933/react.svg"
-          className="animate-pulse sm:w-10 md:w-12 drop-shadow-2xl contrast-50"
+          className="animate-pulse w-10 md:w-12 drop-shadow-2xl contrast-50"
           alt=""
         ></img>
         <span className="animate-pulse text-slate-600 pl-1">
