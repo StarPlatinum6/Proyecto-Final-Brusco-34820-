@@ -2,11 +2,20 @@ import { useState, createContext, useEffect } from "react";
 
 export const CartContext = createContext();
 
+const localCart = JSON.parse(localStorage.getItem('cart') || '[]')
+
 export const CartContextProvider = ({ children }) => {
     
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(localCart);
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   let [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    if (cart.length > 0) {
+      setIsCartEmpty(false)
+    }
+  }, [cart]);
 
   const addToCart = (itemToAdd, quantity) => {
 
