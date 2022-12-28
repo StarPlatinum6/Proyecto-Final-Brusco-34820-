@@ -18,7 +18,7 @@
 
 ## 1. Descripción
 
-Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del curso de React.JS de Coderhouse. Creé una tienda en línea de artículos de computación, la misma es capaz de mostrar los productos desde una base de datos, incluyendo sus detalles. El usuario podrá navegar por cada uno de los artículos y realizar compras en la aplicación, la misma se encargará de gestionar una órden única, manipulando los datos del usuario y del pedido, también actualizará el stock de los items a medida que son comprados.
+Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del curso de React.JS de Coderhouse. Creé una tienda en línea de artículos de computación, la misma es capaz de mostrar los productos desde una base de datos, incluyendo sus detalles. El usuario podrá navegar por cada uno de los artículos y realizar compras en la aplicación, la misma se encargará de gestionar una órden única, manipulando los datos del usuario y del pedido, también actualizará el stock de los items a medida que son comprados. Para poder realizar compras, el usuario deberá registrar una cuenta con mail y contraseña, o a través de proveedores como Google o GitHub, una vez logueado, podrá realizar compras con su cuenta y acceder a ellas desde el menú de usuario.
 
 <a name="technologies-es"></a>
 
@@ -38,7 +38,6 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 | SweetAlert2       |
 | Formik            |
 | Yup               |
-| GH-Pages          |
 
 [SweetAlert2:](https://sweetalert2.github.io/) Se utilizó ésta dependencia para notificar al usuario de los diferentes eventos de la interfaz, tales como cuando se agrega un producto al carrito, informar de errores, y permitir al usuario cargar sus datos para realizar un pedido.
 
@@ -46,8 +45,7 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 
 [Yup:](https://www.npmjs.com/package/yup) Junto con Formik, Yup ayudó a realizar la validación de los datos ingresados en el formulario.
 
-[GH-Pages:](https://www.npmjs.com/package/gh-pages) Esta dependencia fue utlizada para crear un deploy funcional de la aplicación usando Github Pages.
-    * Al no ser compatible con React Router, las imágenes locales no son visualizadas, tampoco se podrá ingresar a otra URL manualmente que no sea el home. Con React Hash Router éste problema no se presenta.
+[HeadlessUI:](https://headlessui.com/) Usé el componente "Menu (Dropdown)" para generar el menú de Categorías mobile y el menú de Usuario.
 
 <a name="author-es"></a>
 
@@ -78,7 +76,7 @@ $ npm start
 
 Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
-- [Ephemer Gaming](https://starplatinum6.github.io/Proyecto-Final-Brusco-34820/)
+- [Ephemer Gaming](https://proyecto-final-brusco-34820.vercel.app/)
 
 &nbsp;
 &nbsp;
@@ -100,7 +98,7 @@ Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
 ## 1. About
 
-Ephemer Gaming is an e-commerce project developed for commission 34820 of the Coderhouse React.JS course. I created an online store of computer articles, able to display products from a database, including their details. The user will be able to browse each of the items and make purchases, the app will be responsible for managing a orders, manipulating user and order data, it will also update the item stock as they are purchased.
+Ephemer Gaming is an e-commerce project developed for commission 34820 of the Coderhouse React.JS course. I created an online store of computer articles, able to display products from a database, including their details. The user will be able to browse each of the items and make purchases, the app will be responsible for managing a orders, manipulating user and order data, it will also update the item stock as they are purchased. In order to make purchases, the user must register an account with email and password, or using providers such as Google or GitHub, once logged in, users can make purchases with their account and access them from the user menu.
 
 <a name="technologies-en"></a>
 
@@ -120,7 +118,6 @@ Ephemer Gaming is an e-commerce project developed for commission 34820 of the Co
 | SweetAlert2       |
 | Formik            |
 | Yup               |
-| GH-Pages          |
 
 [SweetAlert2:](https://sweetalert2.github.io/) This dependency was used to notify the user of different interface events, such as when a product is added to the cart, report errors, and allow the user to fill in their data to place an order.
 
@@ -128,8 +125,7 @@ Ephemer Gaming is an e-commerce project developed for commission 34820 of the Co
 
 [Yup:](https://www.npmjs.com/package/yup) Along with Formik, Yup helped with the form data validation.
 
-[GH-Pages:](https://www.npmjs.com/package/gh-pages) This dependency was used to create a functional deployment of the application using Github Pages.
-    * As it is not compatible with React Router, local images are not displayed, nor can you enter another URL manually other than the home. With React Hash Router we don't have this problem.
+[HeadlessUI:](https://headlessui.com/) I used the "Menu (Dropdown)" component to generate the mobile Categories menu and the User menu.
 
 <a name="author-en"></a>
 
@@ -160,4 +156,4 @@ $ npm start
 
 To test the e-commerce app, access through the following link:
 
-- [Ephemer Gaming](https://starplatinum6.github.io/Proyecto-Final-Brusco-34820/)
+- [Ephemer Gaming](https://proyecto-final-brusco-34820.vercel.app/)
