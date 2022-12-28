@@ -26,7 +26,7 @@ const OrderCheck = () => {
       <input
         type="text"
         placeholder="Ingrese Order ID para ver estado"
-        className="text-slate-600 p-2 rounded-lg border-4 border-indigo-500 bg-indigo-100 w-80 text-sm sm:text-xl"
+        className="text-slate-600 p-2 rounded-lg border-2 border-indigo-500 bg-indigo-100 w-80 text-sm sm:text-xl"
         onChange={(e) => setOrderId(e.target.value)}
       ></input>
       {ordersId.some((item) => item.id === orderId) ? (

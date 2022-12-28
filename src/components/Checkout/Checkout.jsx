@@ -1,13 +1,15 @@
 import { useEffect, useState, useContext } from "react";
-import { CartContext } from "../../context/CartContext";
 import { Link, useNavigate } from "react-router-dom";
+
+import { CartContext } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 
 import Loading from "../Loading/Loading";
 import Btn from "../Btn/Btn";
+import CartForm from "../CartForm/CartForm";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
-import CartForm from "../CartForm/CartForm";
 
 import {
   doc,
@@ -24,9 +26,10 @@ import { db } from "../../services/firebase/firebaseconfig";
 
 const Checkout = () => {
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const { cart, clearList, total, isCartEmpty } = useContext(CartContext);
-  const goTo = useNavigate()
+  const { user } = useContext(AuthContext);
+  const goTo = useNavigate();
 
   const MySwal = withReactContent(Swal);
 
@@ -65,7 +68,9 @@ const Checkout = () => {
         icon: "question",
         html: (
           <CartForm
-            onSubmit={(data) => {resolve(data)}}
+            onSubmit={(data) => {
+              resolve(data);
+            }}
             onClose={() => Swal.close()}
           />
         ),
@@ -75,6 +80,7 @@ const Checkout = () => {
   };
 
   const sendOrder = async (data) => {
+    data.email = user.email;
     try {
       const itemsDb = cart.map((item) => ({
         id: item.id,
@@ -151,11 +157,11 @@ const Checkout = () => {
       footer: "A continuación serás dirigido al detalle de la orden.",
       showConfirmButton: false,
     });
-    
+
     setTimeout(() => {
-      Swal.close()
-      goTo(`/order/${orderId}`)
-    }, 5000)
+      Swal.close();
+      goTo(`/order/${orderId}`);
+    }, 5000);
   };
 
   if (isLoading) {

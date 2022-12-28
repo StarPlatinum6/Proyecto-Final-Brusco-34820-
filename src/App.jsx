@@ -10,30 +10,44 @@ import Footer from "./components/Footer/Footer";
 import Cart from "./components/Cart/Cart";
 import OrderStatus from "./components/OrderStatus/OrderStatus";
 import Checkout from "./components/Checkout/Checkout";
+import SignUp from "./components/SignUp/SignUp";
+import Login from "./components/Login/Login";
+import UserOrders from "./components/UserOrders/UserOrders";
 
 import { CartContextProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
-
   return (
     <div className="App bg-slate-50 h-max">
-      <CartContextProvider>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route
-              path="/"
-              element={<ItemListContainer greeting="LISTA DE PRODUCTOS" />}
-            />
-            <Route path="/category/:categoryId" element={<ItemListContainer />} />
-            <Route path="/product/:productId" element={<ItemDetailContainer />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout/" element={<Checkout />} />
-            <Route path="/order/:orderId" element={<OrderStatus />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </CartContextProvider>
+      <BrowserRouter>
+        <CartContextProvider>
+          <AuthProvider>
+            <NavBar />
+            <Routes>
+              <Route
+                path="/"
+                element={<ItemListContainer greeting="LISTA DE PRODUCTOS" />}
+              />
+              <Route
+                path="/category/:categoryId"
+                element={<ItemListContainer />}
+              />
+              <Route
+                path="/product/:productId"
+                element={<ItemDetailContainer />}
+              />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order/:orderId" element={<OrderStatus />} />
+              <Route path="/userorders" element={<UserOrders />} />
+            </Routes>
+            <Footer />
+          </AuthProvider>
+        </CartContextProvider>
+      </BrowserRouter>
     </div>
   );
 }

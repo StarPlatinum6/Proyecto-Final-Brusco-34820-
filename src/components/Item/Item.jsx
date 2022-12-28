@@ -9,7 +9,15 @@ const Item = ({ part }) => {
         "bg-indigo-900/90 rounded-lg p-5 flex flex-col items-center shadow-xl shadow-indigo-900/70 hover:shadow-indigo-200/70 transition-all border-2 border-opacity-80 border-white justify-between hover:scale-105 origin-top gap-4 relative"
       }
     >
-      {part.stock === 0 ? <span className="absolute -right-3 -top-2 font-sans font-light text-xs text-slate-50 bg-red-600/90 p-2 rounded-md shadow-md cursor-default">Agotado</span> : <span className="absolute -right-3 -top-2 font-sans font-light text-xs text-slate-50 bg-green-600/90 p-2 rounded-md shadow-md cursor-default">Disponible</span>}
+      {part.stock === 0 ? (
+        <span className="absolute -right-3 -top-2 font-sans font-light text-xs text-slate-50 bg-red-600/90 p-2 rounded-md shadow-md cursor-default">
+          Agotado
+        </span>
+      ) : (
+        <span className="absolute -right-3 -top-2 font-sans font-light text-xs text-slate-50 bg-green-600/90 p-2 rounded-md shadow-md cursor-default">
+          Disponible
+        </span>
+      )}
       <h1
         className={
           "p-2 mb-5 w-max-content text-lg text-indigo-50 font-medium tracking-wide h-8"

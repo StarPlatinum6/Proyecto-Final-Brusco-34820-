@@ -12,6 +12,7 @@ import Loading from "../Loading/Loading";
 
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
 
 import { getDoc, doc, getDocs, collection } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseconfig";
@@ -23,6 +24,7 @@ const ItemDetail = () => {
   const [partsId, setPartsId] = useState([]);
 
   const { addToCart } = useContext(CartContext);
+  const { user } = useContext(AuthContext);
 
   let { productId } = useParams();
 
@@ -112,6 +114,37 @@ const ItemDetail = () => {
     return <Loading />;
   }
 
+  const userCheckForBuying = () => {
+    if (user) {
+      return (
+        <>
+          {cartEmpty ? (
+            <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} />
+          ) : (
+            <>
+              <Link to={`/`}>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
+                  Seguir comprando
+                </Btn>
+              </Link>
+              <Link to={`/cart`}>
+                <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
+                  Dirigirse al carrito
+                </Btn>
+              </Link>
+            </>
+          )}
+        </>
+      );
+    } else {
+      return (
+        <h1 className="p-2 md:p-4 lg:p-8 font-serif text-base sm:text-lg md:text-xl lg:text-2xl font-extralight leading-normal text-indigo-50 uppercase">
+          Debes loguearte para comprar
+        </h1>
+      );
+    }
+  };
+
   return (
     <>
       {partsId.some((item) => item.id === productId) ? (
@@ -151,22 +184,7 @@ const ItemDetail = () => {
                   $ {part.price}
                 </p>
               </div>
-              {cartEmpty ? (
-                <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} />
-              ) : (
-                <>
-                  <Link to={`/`}>
-                    <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
-                      Seguir comprando
-                    </Btn>
-                  </Link>
-                  <Link to={`/cart`}>
-                    <Btn className="font-sans font-light text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
-                      Dirigirse al carrito
-                    </Btn>
-                  </Link>
-                </>
-              )}
+              {userCheckForBuying()}
             </div>
           </div>
         </div>
@@ -178,12 +196,14 @@ const ItemDetail = () => {
               "bg-indigo-900/90 rounded-lg p-5 py-16 md:py-8 flex flex-col items-center content-around shadow-xl shadow-indigo-900/70 transition-all border-2 border-opacity-80 border-white justify-between gap-4 md:gap-1 max-w-sm md:max-w-3xl lg:max-w-4xl"
             }
           >
-            <h1 className="p-2 md:p-4 lg:p-8 font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl font-extralight leading-normal text-indigo-50 uppercase">El producto que buscas no existe</h1>
+            <h1 className="p-2 md:p-4 lg:p-8 font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl font-extralight leading-normal text-indigo-50 uppercase">
+              El producto que buscas no existe
+            </h1>
             <Link to={`/`}>
-                    <Btn className="font-sans font-light text-sm md:text-base lg:text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
-                      Volver al home
-                    </Btn>
-                  </Link>
+              <Btn className="font-sans font-light text-sm md:text-base lg:text-lg text-slate-50 bg-indigo-600 p-2 rounded-md m-3 py-2 hover:bg-indigo-700 transition-all w-36 md:w-36 lg:w-40 shadow-md">
+                Volver al home
+              </Btn>
+            </Link>
           </div>
         </div>
       )}

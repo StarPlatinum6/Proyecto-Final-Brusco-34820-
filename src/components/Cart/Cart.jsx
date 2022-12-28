@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 import Btn from "../Btn/Btn";
 import Loading from "../Loading/Loading";
@@ -8,6 +9,7 @@ import Loading from "../Loading/Loading";
 const Cart = () => {
   const { cart, clearList, isCartEmpty, total, removeItem } =
     useContext(CartContext);
+  const { user } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -46,6 +48,9 @@ const Cart = () => {
         <h1 className="my-10 text-2xl md:text-4xl font-thin tracking-wider text-slate-500 font-serif uppercase">
           Carrito de Compra
         </h1>
+        <h2 className="-mt-4 text-base md:text-lg font-thin tracking-wider text-slate-500 font-serif uppercase">
+          Comprando como: {user.email}
+        </h2>
         {cart.map((item) => (
           <div
             key={item.id}
