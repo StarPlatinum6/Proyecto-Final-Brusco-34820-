@@ -45,7 +45,10 @@ const OrderCheck = () => {
             <Link to={`/order/${orderId}`}>Verificar Orden</Link>
           </button>
         ) : (
-          <Btn className="font-sans font-light text-sm sm:text-lg text-slate-50 bg-red-500 py-3 sm:p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:" type="button">
+          <Btn
+            className="font-sans font-light text-sm sm:text-lg text-slate-50 bg-red-500 py-3 sm:p-3 rounded-md m-3 hover:bg-red-700 transition-all w-48 shadow-md disabled:"
+            type="button"
+          >
             Order ID Inválido
           </Btn>
         )}

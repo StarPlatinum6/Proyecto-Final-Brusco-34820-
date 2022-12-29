@@ -12,7 +12,7 @@ import OrderStatus from "./components/OrderStatus/OrderStatus";
 import Checkout from "./components/Checkout/Checkout";
 import SignUp from "./components/SignUp/SignUp";
 import Login from "./components/Login/Login";
-import UserOrders from "./components/UserOrders/UserOrders";
+import UserOrdersList from "./components/UserOrdersList/UserOrdersList";
 
 import { CartContextProvider } from "./context/CartContext";
 import { AuthProvider } from "./context/AuthContext";
@@ -42,7 +42,7 @@ function App() {
               <Route path="/signup" element={<SignUp />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order/:orderId" element={<OrderStatus />} />
-              <Route path="/userorders" element={<UserOrders />} />
+              <Route path="/userorders" element={<UserOrdersList />} />
             </Routes>
             <Footer />
           </AuthProvider>

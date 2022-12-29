@@ -22,6 +22,9 @@ const ValidationSchema = yup.object().shape({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, //eslint-disable-line
       "*Muy débil"
     ),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "*No coinciden"),
 });
 
 export default function SignUp() {
@@ -74,7 +77,7 @@ export default function SignUp() {
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-xs sm:text-sm"
                 />
                 {errors.fullName && touched.fullName ? (
-                  <div className="absolute -right-20 sm:-right-24 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 z-50">
+                  <div className="absolute -right-28 sm:-right-28 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                     {errors.fullName}
                   </div>
                 ) : null}
@@ -86,7 +89,7 @@ export default function SignUp() {
                   className="relative block w-full appearance-none rounded-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-xs sm:text-sm"
                 />
                 {errors.email && touched.email ? (
-                  <div className="absolute -right-20 sm:-right-24 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 z-50">
+                  <div className="absolute -right-28 sm:-right-28 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                     {errors.email}
                   </div>
                 ) : null}
@@ -98,7 +101,7 @@ export default function SignUp() {
                   className="relative block w-full appearance-none rounded-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-xs sm:text-sm"
                 />
                 {errors.photoURL && touched.photoURL ? (
-                  <div className="absolute -right-20 sm:-right-24 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 z-50">
+                  <div className="absolute -right-28 sm:-right-28 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                     {errors.photoURL}
                   </div>
                 ) : null}
@@ -111,8 +114,21 @@ export default function SignUp() {
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-xs sm:text-sm"
                 />
                 {errors.password && touched.password ? (
-                  <div className="absolute -right-20 sm:-right-24 mr-2 font-sans font-light text-xs sm:text-sm text-red-600">
+                  <div className="absolute -right-28 sm:-right-28 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                     {errors.password}
+                  </div>
+                ) : null}
+              </div>
+              <div className="flex justify-center items-center relative">
+                <Field
+                  name="passwordConfirmation"
+                  type="password"
+                  placeholder="Confirmar contraseña"
+                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-xs sm:text-sm"
+                />
+                {errors.passwordConfirmation && touched.passwordConfirmation ? (
+                  <div className="absolute -right-28 sm:-right-28 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                    {errors.passwordConfirmation}
                   </div>
                 ) : null}
               </div>
