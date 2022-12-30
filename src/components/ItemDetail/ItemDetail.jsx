@@ -3,19 +3,24 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
+import { AuthContext } from "../../context/AuthContext";
+import { BookmarksContext } from "../../context/BookmarksContext";
+
+import { getDoc, doc, getDocs, collection } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseconfig";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+
+import { IconButton } from "@material-tailwind/react";
+import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
+import { BookmarkFillIcon } from "../Bookmarks/BookmarkIcons";
 
 import ItemCount from "../ItemCount/ItemCount";
 import Btn from "../Btn/Btn";
 import Loading from "../Loading/Loading";
-
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
-import { AuthContext } from "../../context/AuthContext";
-
-import { getDoc, doc, getDocs, collection } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
 
 const ItemDetail = () => {
   const [part, setParts] = useState([]);
@@ -25,8 +30,14 @@ const ItemDetail = () => {
 
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
+  const { addBookmark, isInBookmarks, deleteBookmark } =
+    useContext(BookmarksContext);
+
+  const isAdded = isInBookmarks(part.id);
 
   let { productId } = useParams();
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     const collectionPc = doc(db, "pcParts", productId);
@@ -50,9 +61,8 @@ const ItemDetail = () => {
       });
   }, [productId]);
 
-  const MySwal = withReactContent(Swal);
-
   const handleOnAdd = (quantity, stockProd, setStock) => {
+    deleteBookmark(part.id);
     const unit = quantity <= 1 && quantity !== 0 ? "unidad" : "unidades";
     const unit2 =
       stockProd - quantity <= 1 && stockProd - quantity !== 0
@@ -110,10 +120,6 @@ const ItemDetail = () => {
     }
   };
 
-  if (isLoading) {
-    return <Loading />;
-  }
-
   const userCheckForBuying = () => {
     if (user) {
       return (
@@ -145,6 +151,35 @@ const ItemDetail = () => {
     }
   };
 
+  const userCheckForBookmark = () => {
+    if (user) {
+      return (
+        <>
+          <span className="absolute -left-3 -top-2">
+            <IconButton
+              variant="outlined"
+              size="sm"
+              className="bg-indigo-400/90 shadow-sm shadow-slate-50 transition-all flex items-center justify-center"
+              onClick={() => {
+                isAdded ? deleteBookmark(part.id) : addBookmark(part);
+              }}
+            >
+              {isAdded ? (
+                <BookmarkFillIcon className="h-5 w-5 text-indigo-50" />
+              ) : (
+                <BookmarkIcon className="h-5 w-5 text-indigo-50" />
+              )}
+            </IconButton>
+          </span>
+        </>
+      );
+    }
+  };
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <>
       {partsId.some((item) => item.id === productId) ? (
@@ -152,15 +187,16 @@ const ItemDetail = () => {
           <div
             key={part.id}
             className={
-              "bg-indigo-900/90 rounded-lg p-5 flex flex-col md:flex-row items-center shadow-xl shadow-indigo-900/70 transition-all border-2 border-opacity-80 border-white justify-between gap-4 md:gap-16 max-w-sm md:max-w-3xl lg:max-w-4xl"
+              "bg-indigo-900/90 rounded-lg p-5 flex flex-col md:flex-row items-center shadow-xl shadow-indigo-900/70 transition-all border-2 border-opacity-80 border-white justify-between gap-4 md:gap-16 max-w-sm md:max-w-3xl lg:max-w-4xl relative"
             }
           >
+            {userCheckForBookmark()}
             <div className="flex flex-col p-8 w-80 items-center">
               <img
                 src={part.pictureUrl}
                 alt=""
                 className={
-                  "rounded-xl mt-3 max-h-80 w-80 mb-6 md:-mr-10 scale-125 shadow-lg shadow-slate-100/80 ring-8 ring-indigo-500/50"
+                  "rounded-xl mt-3 max-h-80 w-80 md:mb-6 md:-mr-10 md:scale-125 shadow-lg shadow-slate-100/80 ring-8 ring-indigo-500/50"
                 }
               />
             </div>

@@ -1,20 +1,24 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
-import { setLocale } from 'yup';
+import { setLocale } from "yup";
 
 import Btn from "../Btn/Btn";
 
 setLocale({
   number: {
-    default: 'Deve ser maior que',
+    default: "Deve ser maior que",
   },
 });
 
 const ValidationSchema = yup.object().shape({
   firstName: yup.string().required("*Obligatorio"),
   lastName: yup.string().required("*Obligatorio"),
-  phone: yup.number().positive("*Positivo").integer("*Entero").required("*Obligatorio"),
+  phone: yup
+    .number()
+    .positive("*Positivo")
+    .integer("*Entero")
+    .required("*Obligatorio"),
 });
 
 export const CartForm = ({ onSubmit, onClose }) => {

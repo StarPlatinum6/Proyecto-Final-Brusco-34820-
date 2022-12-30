@@ -9,6 +9,7 @@ import UserIcon from "./UserIcon";
 import UserImg from "./UserImg";
 import OrderIcon from "./OrderIcon";
 import LogoutIcon from "../NavBar/NavIcons/LogoutIcon";
+import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
 
 export default function DropdownUser() {
   const { logOut, user } = useContext(AuthContext);
@@ -34,13 +35,13 @@ export default function DropdownUser() {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y font-serif divide-slate-300 rounded-md bg-slate-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <h1 className="text-slate-600 group flex flex-row justify-center w-full items-center rounded-md px-2 py-2 text-sm md:text-base text">
+            <h1 className="text-slate-600 group flex flex-row justify-center w-full items-center rounded-md px-2 py-2 text-sm md:text-base">
               {user.displayName}
             </h1>
             <div className="px-1 py-1 ">
               <Menu.Item>
                 <NavLink to="/userorders">
-                  <div className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm md:text-base">
+                  <div className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm">
                     <button className="flex">
                       <OrderIcon className={"ml-1 mr-2 text-indigo-600/90"} />
                       Mis órdenes
@@ -49,8 +50,24 @@ export default function DropdownUser() {
                 </NavLink>
               </Menu.Item>
               <Menu.Item>
+                <NavLink to="/bookmarks">
+                  <div className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm">
+                    <button className="flex">
+                      <BookmarkIcon
+                        className={"ml-1 mr-2 text-indigo-600/90"}
+                        height="1.3em"
+                        width="1.3em"
+                      />
+                      Mis favoritos
+                    </button>
+                  </div>
+                </NavLink>
+              </Menu.Item>
+            </div>
+            <div className="px-1 py-1">
+              <Menu.Item>
                 <div
-                  className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm md:text-base"
+                  className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm"
                   onClick={logOut}
                 >
                   <button className="flex">
