@@ -23,12 +23,14 @@ const UserOrdersList = () => {
             id: doc.id,
             email: post.buyer.email,
             total: post.total,
+            date: post.date.seconds,
           };
         });
         const userOrdersFiltered = userOrders.filter(
           (order) => order.email === user.email
         );
-        setUserOrdersFiltered(userOrdersFiltered);
+        const userOrdersFilteredByDate = userOrdersFiltered.sort((order1, order2) => order1.date - order2.date);
+        setUserOrdersFiltered(userOrdersFilteredByDate);
       })
       .finally(() => {
         setIsLoading(false);
