@@ -6,4 +6,5 @@ const Btn = ({ fn, className, type, children }) => {
   );
 };
 
+
 export default Btn;
