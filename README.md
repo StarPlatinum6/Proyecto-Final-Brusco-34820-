@@ -76,7 +76,7 @@ $ npm start
 
 Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
-- [Ephemer Gaming](https://proyecto-final-brusco-34820.vercel.app/)
+- [Ephemer Gaming](https://ephemer-gaming.vercel.app/)
 
 &nbsp;
 &nbsp;
@@ -156,4 +156,4 @@ $ npm start
 
 To test the e-commerce app, access through the following link:
 
-- [Ephemer Gaming](https://proyecto-final-brusco-34820.vercel.app/)
+- [Ephemer Gaming](https://ephemer-gaming.vercel.app/)
