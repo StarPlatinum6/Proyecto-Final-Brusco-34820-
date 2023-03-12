@@ -22,12 +22,14 @@ import { BookmarkFillIcon } from "../Bookmarks/BookmarkIcons";
 import ItemCount from "../ItemCount/ItemCount";
 import Btn from "../Btn/Btn";
 import Loading from "../Loading/Loading";
+import ErrorState from "../ErrorState/ErrorState";
 
 const ItemDetailContainer = () => {
   const [part, setParts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [cartEmpty, setCartEmpty] = useState(true);
   const [partsId, setPartsId] = useState([]);
+  const [errorState, setErrorState] = useState(false);
 
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
@@ -44,18 +46,25 @@ const ItemDetailContainer = () => {
     const collectionPc = doc(db, "pcParts", productId);
     const collectionsPc = collection(db, "pcParts");
 
-    getDocs(collectionsPc).then((response) => {
-      const partsId = response.docs.map((doc) => {
-        return { id: doc.id };
+    getDocs(collectionsPc)
+      .then((response) => {
+        const partsId = response.docs.map((doc) => {
+          return { id: doc.id };
+        });
+        setPartsId(partsId);
+      })
+      .catch(() => {
+        setErrorState(true)
       });
-      setPartsId(partsId);
-    });
 
     getDoc(collectionPc)
       .then((response) => {
         const data = response.data();
         const partsAdapted = { id: response.id, ...data };
         setParts(partsAdapted);
+      })
+      .catch(() => {
+        setErrorState(true)
       })
       .finally(() => {
         setIsLoading(false);
@@ -181,10 +190,20 @@ const ItemDetailContainer = () => {
     return <Loading />;
   }
 
+  if (errorState) {
+    return <ErrorState />;
+  }
+
   return (
     <>
       <div className="tracking-widest bg-slate-50 p-16 mx-auto max-w-screen-lg flex justify-center">
-        <ItemDetail userCheckForBookmark={userCheckForBookmark} userCheckForBuying={userCheckForBuying} partsId={partsId} part={part} productId={productId}/>
+        <ItemDetail
+          userCheckForBookmark={userCheckForBookmark}
+          userCheckForBuying={userCheckForBuying}
+          partsId={partsId}
+          part={part}
+          productId={productId}
+        />
       </div>
     </>
   );

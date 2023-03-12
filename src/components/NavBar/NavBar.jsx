@@ -18,16 +18,21 @@ const NavActiveStyle = "bg-slate-400 rounded-md shadow-lg shadow-slate-400";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
+  const [errorState, setErrorState] = useState(false);
 
   const collectionsPc = collection(db, "pcParts");
 
-  getDocs(collectionsPc).then((response) => {
-    const allCategories = response.docs.map((doc) => {
-      return doc.data().category;
+  getDocs(collectionsPc)
+    .then((response) => {
+      const allCategories = response.docs.map((doc) => {
+        return doc.data().category;
+      });
+      let categories = [...new Set(allCategories)];
+      setCategories(categories);
+    })
+    .catch(() => {
+      setErrorState(true);
     });
-    let categories = [...new Set(allCategories)];
-    setCategories(categories);
-  });
 
   return (
     <nav className="flex flex-wrap justify-evenly items-center bg-slate-200 py-6 text-slate-600">
@@ -38,7 +43,7 @@ const NavBar = () => {
           </h1>
         </NavLink>
         <div className="flex items-center gap-4">
-          <DropdownMenu categories={categories}/>
+          <DropdownMenu categories={categories} />
           <NavLink
             to="/cart"
             className={({ isActive }) =>
@@ -69,15 +74,19 @@ const NavBar = () => {
       </div>
 
       <div className="hidden xl:flex">
-        {categories.map((cat) => (
-          <NavLink
-            key={cat}
-            to={`/category/${cat}`}
-            className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-          >
-            <Btn className={NavStyle}>{cat}</Btn>
-          </NavLink>
-        ))}
+        {!errorState ? (
+          categories.map((cat) => (
+            <NavLink
+              key={cat}
+              to={`/category/${cat}`}
+              className={({ isActive }) => (isActive ? NavActiveStyle : "")}
+            >
+              <Btn className={NavStyle}>{cat}</Btn>
+            </NavLink>
+          ))
+        ) : (
+          <div className="text-xl font-light font-serif hover:scale-110 rounded-md py-3 px-2 transition-all duration-300 border mx-4 truncate bg-gradient-to-r from-slate-600 via-red-400 to-slate-600 text-transparent bg-clip-text">Error al obtener categorías</div>
+        )}
       </div>
     </nav>
   );

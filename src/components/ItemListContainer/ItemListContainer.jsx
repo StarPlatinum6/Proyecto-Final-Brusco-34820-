@@ -7,10 +7,12 @@ import { getDocs, collection, query, where, orderBy } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseconfig";
 
 import ItemList from "../ItemList/ItemList";
+import ErrorState from "../ErrorState/ErrorState";
 
 const ItemListContainer = ({ greeting }) => {
   const [parts, setParts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorState, setErrorState] = useState(false);
 
   const { categoryId } = useParams();
 
@@ -37,6 +39,9 @@ const ItemListContainer = ({ greeting }) => {
         });
         setParts(partsAdapted);
       })
+      .catch(() => {
+        setErrorState(true)
+      })
       .finally(() => {
         setIsLoading(false);
       });
@@ -44,6 +49,10 @@ const ItemListContainer = ({ greeting }) => {
 
   if (isLoading) {
     return <Loading />;
+  }
+
+  if (errorState) {
+    return <ErrorState />;
   }
 
 
