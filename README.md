@@ -64,8 +64,8 @@ Nicolás Brusco | Desarrollador web Front-End / React.JS
 ## 4. Ejecutar localmente
 
 ```bash
-$ git clone https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820.git
-$ cd Proyecto-Final-Brusco-34820
+$ git clone https://github.com/StarPlatinum6/Ephemer-Gaming.git
+$ cd Ephemer-Gaming
 $ npm install
 $ npm start
 ```
@@ -144,8 +144,8 @@ Nicolás Brusco | Front-End web Developer / React.JS
 ## 4. Run locally
 
 ```bash
-$ git clone https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820.git
-$ cd Proyecto-Final-Brusco-34820
+$ git clone https://github.com/StarPlatinum6/Ephemer-Gaming.git
+$ cd Ephemer-Gaming
 $ npm install
 $ npm start
 ```
