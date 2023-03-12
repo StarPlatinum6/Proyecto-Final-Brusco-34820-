@@ -9,8 +9,7 @@ import { CartContext } from "../../context/CartContext";
 import { AuthContext } from "../../context/AuthContext";
 import { BookmarksContext } from "../../context/BookmarksContext";
 
-import { getDoc, doc, getDocs, collection } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
+import { getProductById } from "../../services/firestore/products";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -43,28 +42,14 @@ const ItemDetailContainer = () => {
   const MySwal = withReactContent(Swal);
 
   useEffect(() => {
-    const collectionPc = doc(db, "pcParts", productId);
-    const collectionsPc = collection(db, "pcParts");
-
-    getDocs(collectionsPc)
-      .then((response) => {
-        const partsId = response.docs.map((doc) => {
-          return { id: doc.id };
-        });
+    setIsLoading(true);
+    getProductById(productId)
+      .then(({ partsId, partsAdapted }) => {
         setPartsId(partsId);
-      })
-      .catch(() => {
-        setErrorState(true)
-      });
-
-    getDoc(collectionPc)
-      .then((response) => {
-        const data = response.data();
-        const partsAdapted = { id: response.id, ...data };
         setParts(partsAdapted);
       })
       .catch(() => {
-        setErrorState(true)
+        setErrorState(true);
       })
       .finally(() => {
         setIsLoading(false);
