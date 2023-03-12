@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 import { getDocs, collection } from "firebase/firestore";
@@ -20,19 +20,20 @@ const NavBar = () => {
   const [categories, setCategories] = useState([]);
   const [errorState, setErrorState] = useState(false);
 
-  const collectionsPc = collection(db, "pcParts");
-
-  getDocs(collectionsPc)
-    .then((response) => {
-      const allCategories = response.docs.map((doc) => {
-        return doc.data().category;
+  useEffect(() => {
+    const collectionsPc = collection(db, "pcParts");
+    getDocs(collectionsPc)
+      .then((response) => {
+        const allCategories = response.docs.map((doc) => {
+          return doc.data().category;
+        });
+        let categories = [...new Set(allCategories)];
+        setCategories(categories);
+      })
+      .catch(() => {
+        setErrorState(true);
       });
-      let categories = [...new Set(allCategories)];
-      setCategories(categories);
-    })
-    .catch(() => {
-      setErrorState(true);
-    });
+  }, [])
 
   return (
     <nav className="flex flex-wrap justify-evenly items-center bg-slate-200 py-6 text-slate-600">
