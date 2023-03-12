@@ -1,15 +1,18 @@
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { CartContext } from "../../context/CartContext";
+import { BookmarksContext } from "../../context/BookmarksContext";
 
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
-import { AuthContext } from "../../context/AuthContext";
-import { BookmarksContext } from "../../context/BookmarksContext";
-
 import { getProductById } from "../../services/firestore/products";
+
+import ItemCount from "../ItemCount/ItemCount";
+import Btn from "../Btn/Btn";
+import Loading from "../Loading/Loading";
+import ErrorState from "../ErrorState/ErrorState";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -18,10 +21,6 @@ import { IconButton } from "@material-tailwind/react";
 import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
 import { BookmarkFillIcon } from "../Bookmarks/BookmarkIcons";
 
-import ItemCount from "../ItemCount/ItemCount";
-import Btn from "../Btn/Btn";
-import Loading from "../Loading/Loading";
-import ErrorState from "../ErrorState/ErrorState";
 
 const ItemDetailContainer = () => {
   const [part, setParts] = useState([]);

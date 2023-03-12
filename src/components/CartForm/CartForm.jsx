@@ -7,7 +7,7 @@ import Btn from "../Btn/Btn";
 
 setLocale({
   number: {
-    default: "Deve ser maior que",
+    default: "Debe ser mayor que",
   },
 });
 

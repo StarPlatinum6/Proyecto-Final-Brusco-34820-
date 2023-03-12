@@ -1,25 +1,25 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
-
 import Loading from "../Loading/Loading";
+import ErrorState from "../ErrorState/ErrorState";
 import Btn from "../Btn/Btn";
+import { getOrderById } from "../../services/firestore/orders";
 
 const OrderStatus = () => {
   const { orderId } = useParams();
 
   const [orderData, setOrderData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [errorState, setErrorState] = useState(false);
 
   useEffect(() => {
-    const order = doc(db, "orders", orderId);
-
-    getDoc(order)
-      .then((response) => {
-        const data = response.data();
-        setOrderData(data);
+    getOrderById(orderId)
+      .then((orderData) => {
+        setOrderData(orderData);
+      })
+      .catch(() => {
+        setErrorState(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -32,6 +32,10 @@ const OrderStatus = () => {
         <Loading />
       </div>
     );
+  }
+
+  if (errorState) {
+    return <ErrorState />;
   }
 
   return (

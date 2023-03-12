@@ -11,17 +11,7 @@ import CartForm from "../CartForm/CartForm";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import {
-  doc,
-  setDoc,
-  collection,
-  serverTimestamp,
-  writeBatch,
-  query,
-  where,
-  documentId,
-  getDocs,
-} from "firebase/firestore";
+import { doc, setDoc, collection, serverTimestamp, writeBatch, query, where, documentId, getDocs} from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseconfig";
 
 const Checkout = () => {

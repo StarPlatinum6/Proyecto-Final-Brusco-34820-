@@ -14,5 +14,3 @@ const Loading = () => {
 };
 
 export default Loading;
-
-// w-96

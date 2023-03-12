@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
+import { getOrders } from "../../services/firestore/orders";
 
 import Btn from "../Btn/Btn";
 
@@ -11,15 +9,12 @@ const OrderCheck = () => {
   const [ordersId, setOrdersId] = useState([]);
 
   useEffect(() => {
-    const collectionOrders = collection(db, "orders");
-
-    getDocs(collectionOrders).then((response) => {
-      const ordersId = response.docs.map((doc) => {
-        return { id: doc.id };
-      });
+    getOrders().then((ordersId) => {
       setOrdersId(ordersId);
     });
   }, []);
+
+  console.log(ordersId);
 
   const handleSubmit = (e) => {
     e.preventDefault();
