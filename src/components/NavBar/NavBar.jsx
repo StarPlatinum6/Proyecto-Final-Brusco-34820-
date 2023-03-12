@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseconfig";
 
 import Btn from "../Btn/Btn";
 import CartWidget from "../CartWidget/CartWidget";
@@ -14,6 +17,17 @@ const NavActiveStyle = "bg-slate-400 rounded-md shadow-lg shadow-slate-400";
 
 const NavBar = () => {
   const { user } = useContext(AuthContext);
+  const [categories, setCategories] = useState([]);
+
+  const collectionsPc = collection(db, "pcParts");
+
+  getDocs(collectionsPc).then((response) => {
+    const allCategories = response.docs.map((doc) => {
+      return doc.data().category;
+    });
+    let categories = [...new Set(allCategories)];
+    setCategories(categories);
+  });
 
   return (
     <nav className="flex flex-wrap justify-evenly items-center bg-slate-200 py-6 text-slate-600">
@@ -24,7 +38,7 @@ const NavBar = () => {
           </h1>
         </NavLink>
         <div className="flex items-center gap-4">
-          <DropdownMenu />
+          <DropdownMenu categories={categories}/>
           <NavLink
             to="/cart"
             className={({ isActive }) =>
@@ -55,36 +69,15 @@ const NavBar = () => {
       </div>
 
       <div className="hidden xl:flex">
-        <NavLink
-          to="/category/MOTHERBOARD"
-          className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-        >
-          <Btn className={NavStyle}>MOTHERBOARDS</Btn>
-        </NavLink>
-        <NavLink
-          to="/category/CPU"
-          className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-        >
-          <Btn className={NavStyle}>PROCESADORES</Btn>
-        </NavLink>
-        <NavLink
-          to="/category/RAM"
-          className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-        >
-          <Btn className={NavStyle}>MEMORIAS RAM</Btn>
-        </NavLink>
-        <NavLink
-          to="/category/PSU"
-          className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-        >
-          <Btn className={NavStyle}>FUENTES</Btn>
-        </NavLink>
-        <NavLink
-          to="/category/GPU"
-          className={({ isActive }) => (isActive ? NavActiveStyle : "")}
-        >
-          <Btn className={NavStyle}>PLACAS DE VIDEO</Btn>
-        </NavLink>
+        {categories.map((cat) => (
+          <NavLink
+            key={cat}
+            to={`/category/${cat}`}
+            className={({ isActive }) => (isActive ? NavActiveStyle : "")}
+          >
+            <Btn className={NavStyle}>{cat}</Btn>
+          </NavLink>
+        ))}
       </div>
     </nav>
   );
