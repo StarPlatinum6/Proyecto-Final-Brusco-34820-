@@ -193,7 +193,7 @@ const Checkout = () => {
             <p className="sm:text-base md:text-lg lg:text-xl w-max-content text-slate-500 font-medium tracking-wide h-12 w-40 flex justify-center items-center">
               $ {item.price} / {item.quantity} Un.
             </p>
-            <p className="w-max-content md:text-xl lg:text-3xl text-slate-700 font-medium tracking-wide h-12 flex justify-center items-center w-24 lg:w-32">
+            <p className="w-max-content md:text-xl lg:text-2xl text-slate-700 font-medium tracking-wide h-12 flex justify-center items-center w-28 lg:w-36">
               $ {item.price * item.quantity}
             </p>
           </div>
