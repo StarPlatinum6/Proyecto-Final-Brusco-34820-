@@ -1,12 +1,4 @@
-import {
-  doc,
-  getDoc,
-  getDocs,
-  collection,
-  query,
-  where,
-  orderBy,
-} from "firebase/firestore";
+import { doc, getDoc, getDocs, collection, query, where, orderBy, writeBatch } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseconfig";
 
 export const getProducts = (categoryId) => {
@@ -62,4 +54,24 @@ export const getProductById = (productId) => {
         reject(error);
       });
   });
+};
+
+export const updateProductsStock = async (cartProducts, cart) => {
+  const outOfStock = [];
+  const batch = writeBatch(db);
+  cartProducts.forEach((cartProduct) => {
+    const cartProductData = cartProduct.data();
+    const stockDb = cartProductData.stock;
+    const productInCart = cart.find(
+      (prodCart) => prodCart.id === cartProduct.id
+    );
+    const prodQty = productInCart?.quantity || 0;
+    if (stockDb >= prodQty) {
+      batch.update(cartProduct.ref, { stock: stockDb - prodQty });
+    } else {
+      outOfStock.push({ id: cartProducts.id, ...cartProduct });
+    }
+  });
+  await batch.commit();
+  return outOfStock;
 };

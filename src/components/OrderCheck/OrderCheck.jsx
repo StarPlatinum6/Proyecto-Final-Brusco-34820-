@@ -14,8 +14,6 @@ const OrderCheck = () => {
     });
   }, []);
 
-  console.log(ordersId);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setOrderId("");

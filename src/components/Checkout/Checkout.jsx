@@ -11,8 +11,11 @@ import CartForm from "../CartForm/CartForm";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import { doc, setDoc, collection, serverTimestamp, writeBatch, query, where, documentId, getDocs} from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
+import { getCartDbProducts } from "../../services/firestore/cart";
+import { saveOrder } from "../../services/firestore/orders";
+import { updateProductsStock } from "../../services/firestore/products";
+
+import { serverTimestamp } from "firebase/firestore";
 
 const Checkout = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,8 +34,8 @@ const Checkout = () => {
 
   const handleBuy = async () => {
     try {
-      const data = await showCartForm();
-      sendOrder(data);
+      const formData = await showCartForm();
+      sendOrder(formData);
     } catch (er) {
       console.error(er);
       MySwal.fire({
@@ -69,77 +72,46 @@ const Checkout = () => {
     });
   };
 
-  const sendOrder = async (data) => {
-    data.email = user.email;
+  const sendOrder = async (formData) => {
+    formData.email = user.email;
     try {
-      const itemsDb = cart.map((item) => ({
-        id: item.id,
-        title: item.title,
-        price: item.price,
-        quantity: item.quantity,
-        pictureUrl: item.pictureUrl,
-      }));
-
-      const order = {
-        buyer: data,
-        items: itemsDb,
-        total: total,
-        date: serverTimestamp(),
-      };
-
-      const batch = writeBatch(db);
-
-      const cartProductsIds = cart.map((prod) => prod.id);
-      const productsRef = query(
-        collection(db, "pcParts"),
-        where(documentId(), "in", cartProductsIds)
-      );
-      const cartProductsDB = await getDocs(productsRef);
-      const { docs } = cartProductsDB;
-
-      const outOfStock = [];
-
-      docs.forEach((prodDb) => {
-        const productData = prodDb.data();
-        const stockDb = productData.stock;
-
-        const producInCart = cart.find((prodCart) => prodCart.id === prodDb.id);
-        const prodQty = producInCart?.quantity;
-
-        if (stockDb >= prodQty) {
-          batch.update(prodDb.ref, { stock: stockDb - prodQty });
-        } else {
-          outOfStock.push({ id: prodDb.id, ...productData });
-        }
-      });
-
+      const order = createOrder(formData);
+      const cartProducts = await getCartDbProducts(cart);
+      const outOfStock = await updateProductsStock(cartProducts, cart);
       if (outOfStock.length === 0) {
-        await batch.commit();
-        const ordersCollectionRef = doc(collection(db, "orders"));
-        await setDoc(ordersCollectionRef, order);
+        const savedOrder = await saveOrder(order);
+        console.log(savedOrder.id);
         clearList();
-        if (ordersCollectionRef.id) afterBuy(ordersCollectionRef.id);
+        afterBuyNotification(savedOrder.id);
       } else {
-        MySwal.fire({
-          title: "¡Auch!",
-          text: `Nos quedamos sin la cantidad deseada mientras finalizabas la compra!`,
-          icon: "error",
-          footer: "Por favor, actualizá la página para ver el stock actual.",
-          showConfirmButton: false,
-        });
+        outOfStockNotification();
       }
     } catch (error) {
       console.error(error);
-      MySwal.fire({
-        title: "Oops...",
-        text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
-        icon: "error",
-        showConfirmButton: false,
-      });
+      errorNotification();
     }
   };
 
-  const afterBuy = (orderId) => {
+  const createOrder = (formData) => {
+    return {
+      buyer: formData,
+      items: getCartItems(),
+      total: total,
+      date: serverTimestamp(),
+    };
+  };
+
+  const getCartItems = () => {
+    return cart.map((item) => ({
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      quantity: item.quantity,
+      pictureUrl: item.pictureUrl,
+    }));
+  };
+
+  const afterBuyNotification = (orderId) => {
     MySwal.fire({
       title: "¡Compra exitosa!",
       text: `Número de órden: ${orderId}`,
@@ -147,11 +119,29 @@ const Checkout = () => {
       footer: "A continuación serás dirigido al detalle de la orden.",
       showConfirmButton: false,
     });
-
     setTimeout(() => {
       Swal.close();
       goTo(`/order/${orderId}`);
     }, 5000);
+  };
+
+  const outOfStockNotification = () => {
+    MySwal.fire({
+      title: "¡Auch!",
+      text: `Nos quedamos sin la cantidad deseada mientras finalizabas la compra!`,
+      icon: "error",
+      footer: "Por favor, actualizá la página para ver el stock actual.",
+      showConfirmButton: false,
+    });
+  };
+
+  const errorNotification = () => {
+    MySwal.fire({
+      title: "Oops...",
+      text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
+      icon: "error",
+      showConfirmButton: false,
+    });
   };
 
   if (isLoading) {
