@@ -1,31 +1,17 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import useAsyncFn from "../../hooks/useAsyncFn";
 import { getProducts } from "../../services/firestore/products";
+
+import { useParams } from "react-router-dom";
 
 import Loading from "../Loading/Loading";
 import ItemList from "../ItemList/ItemList";
 import ErrorState from "../ErrorState/ErrorState";
 
 const ItemListContainer = ({ greeting }) => {
-  const [parts, setParts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [errorState, setErrorState] = useState(false);
-
   const { categoryId } = useParams();
+  const getProductsWithCategory = () => getProducts(categoryId);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getProducts(categoryId)
-      .then((parts) => {
-        setParts(parts);
-      })
-      .catch(() => {
-        setErrorState(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [categoryId]);
+  const { data: parts, loading: isLoading, error: errorState } = useAsyncFn(getProductsWithCategory, [categoryId]);
 
   if (isLoading) {
     return <Loading />;

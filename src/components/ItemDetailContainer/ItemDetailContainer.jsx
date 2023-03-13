@@ -1,5 +1,7 @@
-import ItemDetail from "../ItemDetail/ItemDetail";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
+
+import useGetProductById from "../../hooks/useGetProductById";
+
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
 import { BookmarksContext } from "../../context/BookmarksContext";
@@ -7,8 +9,7 @@ import { BookmarksContext } from "../../context/BookmarksContext";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import { getProductById } from "../../services/firestore/products";
-
+import ItemDetail from "../ItemDetail/ItemDetail";
 import ItemCount from "../ItemCount/ItemCount";
 import Btn from "../Btn/Btn";
 import Loading from "../Loading/Loading";
@@ -21,13 +22,11 @@ import { IconButton } from "@material-tailwind/react";
 import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
 import { BookmarkFillIcon } from "../Bookmarks/BookmarkIcons";
 
-
 const ItemDetailContainer = () => {
-  const [part, setParts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  let { productId } = useParams();
+  const { part, partsId, isLoading, errorState } = useGetProductById(productId);
+
   const [cartEmpty, setCartEmpty] = useState(true);
-  const [partsId, setPartsId] = useState([]);
-  const [errorState, setErrorState] = useState(false);
 
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
@@ -36,24 +35,7 @@ const ItemDetailContainer = () => {
 
   const isAdded = isInBookmarks(part.id);
 
-  let { productId } = useParams();
-
   const MySwal = withReactContent(Swal);
-
-  useEffect(() => {
-    setIsLoading(true);
-    getProductById(productId)
-      .then(({ partsId, partsAdapted }) => {
-        setPartsId(partsId);
-        setParts(partsAdapted);
-      })
-      .catch(() => {
-        setErrorState(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, [productId]);
 
   const handleOnAdd = (quantity, stockProd, setStock) => {
     deleteBookmark(part.id);
