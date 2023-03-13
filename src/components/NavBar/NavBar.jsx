@@ -33,7 +33,7 @@ const NavBar = () => {
       .catch(() => {
         setErrorState(true);
       });
-  }, [])
+  }, []);
 
   return (
     <nav className="flex flex-wrap justify-evenly items-center bg-slate-200 py-6 text-slate-600">
@@ -86,7 +86,9 @@ const NavBar = () => {
             </NavLink>
           ))
         ) : (
-          <div className="text-xl font-light font-serif hover:scale-110 rounded-md py-3 px-2 transition-all duration-300 border mx-4 truncate bg-gradient-to-r from-slate-600 via-red-400 to-slate-600 text-transparent bg-clip-text">Error al obtener categorías</div>
+          <div className="text-xl font-light font-serif hover:scale-110 rounded-md py-3 px-2 transition-all duration-300 border mx-4 truncate bg-gradient-to-r from-slate-600 via-red-400 to-slate-600 text-transparent bg-clip-text">
+            Error al obtener categorías
+          </div>
         )}
       </div>
     </nav>

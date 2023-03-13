@@ -2,10 +2,9 @@ import { useState, createContext, useEffect } from "react";
 
 export const CartContext = createContext();
 
-const localCart = JSON.parse(localStorage.getItem('cart') || '[]')
+const localCart = JSON.parse(localStorage.getItem("cart") || "[]");
 
 export const CartContextProvider = ({ children }) => {
-    
   const [cart, setCart] = useState(localCart);
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   let [total, setTotal] = useState(0);
@@ -13,35 +12,45 @@ export const CartContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
     if (cart.length > 0) {
-      setIsCartEmpty(false)
+      setIsCartEmpty(false);
     }
   }, [cart]);
 
   const addToCart = (itemToAdd, quantity) => {
-
     itemToAdd.quantity = quantity;
     itemToAdd.total = quantity * itemToAdd.price;
 
     if (!isInCart(itemToAdd.id)) {
       setCart([...cart, itemToAdd]);
-      setIsCartEmpty(false)
+      setIsCartEmpty(false);
     } else {
-      const itemToUpdate = cart.findIndex((obj => obj.id === itemToAdd.id));
-      cart[itemToUpdate].quantity = itemToAdd.quantity;
-      cart[itemToUpdate].total = itemToAdd.total;
-      setTotal(cart.reduce((acc, currentValue) => acc + currentValue.total, 0))
+      const updatedCart = cart.map((item) => {
+        if (item.id === itemToAdd.id) {
+          item.quantity = itemToAdd.quantity;
+          item.total = itemToAdd.total;
+        }
+        return item;
+      });
+      setCart(updatedCart);
+      setTotal(cart.reduce((acc, currentValue) => acc + currentValue.total, 0));
     }
   };
 
-  const totalCart = cart.reduce((acc, currentValue) => acc + currentValue.total, 0);
-  const totalQty = cart.reduce((acc, currentValue) => acc + currentValue.quantity, 0);
+  const totalCart = cart.reduce(
+    (acc, currentValue) => acc + currentValue.total,
+    0
+  );
+  const totalQty = cart.reduce(
+    (acc, currentValue) => acc + currentValue.quantity,
+    0
+  );
 
   useEffect(() => {
     setCart(cart);
   }, [cart]);
 
   useEffect(() => {
-    setTotal(totalCart)
+    setTotal(totalCart);
   }, [totalCart]);
 
   const isInCart = (id) => {
@@ -52,13 +61,13 @@ export const CartContextProvider = ({ children }) => {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
     if (updatedCart.length === 0) {
-      setIsCartEmpty(true)
+      setIsCartEmpty(true);
     }
   };
 
   const clearList = () => {
     setCart([]);
-    setIsCartEmpty(true)
+    setIsCartEmpty(true);
     setTotal([]);
   };
 
@@ -66,5 +75,5 @@ export const CartContextProvider = ({ children }) => {
     <CartContext.Provider value={{cart, addToCart, removeItem, clearList, isCartEmpty, total, totalQty}}>
         {children}
     </CartContext.Provider>
-  )
+  );
 };

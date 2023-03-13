@@ -1,10 +1,11 @@
-import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+
+import { getOrderById } from "../../services/firestore/orders";
 
 import Loading from "../Loading/Loading";
 import ErrorState from "../ErrorState/ErrorState";
 import Btn from "../Btn/Btn";
-import { getOrderById } from "../../services/firestore/orders";
 
 const OrderStatus = () => {
   const { orderId } = useParams();

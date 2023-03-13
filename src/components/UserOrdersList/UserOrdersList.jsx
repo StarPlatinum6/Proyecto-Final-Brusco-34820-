@@ -1,11 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 
-// import { db } from "../../services/firebase/firebaseconfig";
-// import { getDocs, collection } from "firebase/firestore";
-
 import { AuthContext } from "../../context/AuthContext";
 
 import { getUserOrders } from "../../services/firestore/orders";
+
 import UserOrder from "../UserOrder/UserOrder";
 import Loading from "../Loading/Loading";
 import ErrorState from "../ErrorState/ErrorState";
@@ -28,28 +26,6 @@ const UserOrdersList = () => {
       .finally(() => {
         setIsLoading(false);
       });
-
-
-    // getDocs(collection(db, "orders"))
-    //   .then((response) => {
-    //     const userOrders = response.docs.map((doc) => {
-    //       const post = doc.data();
-    //       return {
-    //         id: doc.id,
-    //         email: post.buyer.email,
-    //         total: post.total,
-    //         date: post.date.seconds,
-    //       };
-    //     });
-    //     const userOrdersFiltered = userOrders.filter(
-    //       (order) => order.email === user.email
-    //     );
-    //     const userOrdersFilteredByDate = userOrdersFiltered.sort((order1, order2) => order1.date - order2.date);
-    //     setUserOrdersFiltered(userOrdersFilteredByDate);
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
   }, [user]);
 
   if (isLoading) {
