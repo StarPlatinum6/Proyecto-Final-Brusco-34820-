@@ -9,7 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 import Loading from "../Loading/Loading";
 import Btn from "../Btn/Btn";
-import SignUpIcon from "../NavBar/NavIcons/SignUpIcon";
+import SignUpIcon from "../Icons/NavIcons/SignUpIcon";
 import { IdentificationIcon } from "@heroicons/react/20/solid";
 
 const ValidationSchema = yup.object().shape({
@@ -30,7 +30,7 @@ const ValidationSchema = yup.object().shape({
     .oneOf([yup.ref("password"), null], "*No coinciden"),
 });
 
-export default function SignUp() {
+const SignUp = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { signUp } = useContext(AuthContext);
 
@@ -166,3 +166,5 @@ export default function SignUp() {
     </>
   );
 }
+
+export default SignUp;

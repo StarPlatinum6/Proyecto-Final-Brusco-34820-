@@ -8,10 +8,10 @@ import { NavLink } from "react-router-dom";
 import UserIcon from "./UserIcon";
 import UserImg from "./UserImg";
 import OrderIcon from "./OrderIcon";
-import LogoutIcon from "../NavBar/NavIcons/LogoutIcon";
+import LogoutIcon from "../Icons/NavIcons/LogoutIcon";
 import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
 
-export default function DropdownUser() {
+const DropdownUser = () => {
   const { logOut, user } = useContext(AuthContext);
 
   return (
@@ -82,4 +82,6 @@ export default function DropdownUser() {
       </Menu>
     </div>
   );
-}
+};
+
+export default DropdownUser;

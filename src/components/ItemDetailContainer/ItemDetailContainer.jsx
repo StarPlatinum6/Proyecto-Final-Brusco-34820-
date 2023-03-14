@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 
-import useGetProductById from "../../hooks/useGetProductById";
+import useAsyncFn from "../../hooks/useAsyncFn";
+import { getProductById } from "../../services/firestore/products";
 
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
@@ -24,21 +25,21 @@ import { BookmarkFillIcon } from "../Bookmarks/BookmarkIcons";
 
 const ItemDetailContainer = () => {
   let { productId } = useParams();
-  const { part, partsId, isLoading, errorState } = useGetProductById(productId);
-
   const [cartEmpty, setCartEmpty] = useState(true);
+  const getProductDetail = () => getProductById(productId);
+
+  const {data: { partsId, partsAdapted: part },loading: isLoading,error: errorState } = useAsyncFn(getProductDetail, [productId]);
 
   const { addToCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
-  const { addBookmark, isInBookmarks, deleteBookmark } =
-    useContext(BookmarksContext);
+  const { addBookmark, isInBookmarks, deleteBookmark } = useContext(BookmarksContext);
 
-  const isAdded = isInBookmarks(part.id);
+  const isAdded = isInBookmarks(part?.id);
 
   const MySwal = withReactContent(Swal);
 
   const handleOnAdd = (quantity, stockProd, setStock) => {
-    deleteBookmark(part.id);
+    deleteBookmark(part?.id);
     const unit = quantity <= 1 && quantity !== 0 ? "unidad" : "unidades";
     const unit2 =
       stockProd - quantity <= 1 && stockProd - quantity !== 0
@@ -101,7 +102,7 @@ const ItemDetailContainer = () => {
       return (
         <>
           {cartEmpty ? (
-            <ItemCount initial={1} stock={part.stock} onAdd={handleOnAdd} />
+            <ItemCount initial={1} stock={part?.stock} onAdd={handleOnAdd} />
           ) : (
             <>
               <Link to={`/`}>
@@ -137,7 +138,7 @@ const ItemDetailContainer = () => {
               size="sm"
               className="bg-indigo-400/90 shadow-sm shadow-slate-50 transition-all flex items-center justify-center"
               onClick={() => {
-                isAdded ? deleteBookmark(part.id) : addBookmark(part);
+                isAdded ? deleteBookmark(part?.id) : addBookmark(part);
               }}
             >
               {isAdded ? (

@@ -8,11 +8,11 @@ import { Formik, Form, Field } from "formik";
 import Loading from "../Loading/Loading";
 
 import { LockClosedIcon } from "@heroicons/react/20/solid";
-import SignInIcon from "../NavBar/NavIcons/LoginIcon";
+import SignInIcon from "../Icons/NavIcons/SignUpIcon";
 import GoogleIcon from "./GoogleIcon";
 import GithubIcon from "./GithubIcon";
 
-export default function Login() {
+const Login = () => {
   const { login, googleLogin, githubLogin } = useContext(AuthContext);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -160,4 +160,6 @@ export default function Login() {
       </div>
     </>
   );
-}
+};
+
+export default Login;

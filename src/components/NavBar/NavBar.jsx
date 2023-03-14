@@ -2,13 +2,16 @@ import { NavLink } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
+// import { getDocs, collection } from "firebase/firestore";
+// import { db } from "../../services/firebase/firebaseconfig";
+
+import useAsyncFn from "../../hooks/useAsyncFn";
+import { getProducts } from "../../services/firestore/products";
 
 import Btn from "../Btn/Btn";
 import CartWidget from "../CartWidget/CartWidget";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
-import LoginIcon from "./NavIcons/LoginIcon";
+import LoginIcon from "../Icons/NavIcons/LoginIcon";
 import DropdownUser from "../DropdownUser/DropdownUser";
 
 const NavStyle =
@@ -18,22 +21,19 @@ const NavActiveStyle = "bg-slate-400 rounded-md shadow-lg shadow-slate-400";
 const NavBar = () => {
   const { user } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
-  const [errorState, setErrorState] = useState(false);
+
+  const getProductsWithCategory = () => getProducts();
+  const { data: parts, error: errorState = null } = useAsyncFn(
+    getProductsWithCategory,
+    []
+  );
 
   useEffect(() => {
-    const collectionsPc = collection(db, "pcParts");
-    getDocs(collectionsPc)
-      .then((response) => {
-        const allCategories = response.docs.map((doc) => {
-          return doc.data().category;
-        });
-        let categories = [...new Set(allCategories)];
-        setCategories(categories);
-      })
-      .catch(() => {
-        setErrorState(true);
-      });
-  }, []);
+    const allCategories = (parts || []).map((part) => {
+      return part.category;
+    });
+    setCategories([...new Set(allCategories)]);
+  }, [parts]);
 
   return (
     <nav className="flex flex-wrap justify-evenly items-center bg-slate-200 py-6 text-slate-600">
@@ -76,9 +76,9 @@ const NavBar = () => {
 
       <div className="hidden xl:flex">
         {!errorState ? (
-          categories.map((cat) => (
+          categories.map((cat, index) => (
             <NavLink
-              key={cat}
+              key={index}
               to={`/category/${cat}`}
               className={({ isActive }) => (isActive ? NavActiveStyle : "")}
             >
