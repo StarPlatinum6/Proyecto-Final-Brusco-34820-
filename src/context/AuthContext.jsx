@@ -1,7 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
-
 import {
   onAuthStateChanged,
   signOut,
@@ -24,7 +22,6 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const { clearList } = useContext(CartContext);
-  const goTo = useNavigate();
 
   const MySwal = withReactContent(Swal);
 
@@ -38,13 +35,12 @@ export const AuthProvider = ({ children }) => {
 
       MySwal.fire({
         title: "Registro exitoso!",
-        footer: "A continuación serás dirigido al portal de login.",
+        footer: "A continuación serás dirigido a Mis Órdenes.",
         icon: "success",
         showConfirmButton: false,
       });
       setTimeout(() => {
         Swal.close();
-        goTo(`/login`);
       }, 2000);
     } catch (er) {
       console.log(er);
@@ -76,13 +72,12 @@ export const AuthProvider = ({ children }) => {
       );
       MySwal.fire({
         title: `¡Bienvenido ${userCredentials.user.displayName}!`,
-        footer: "A continuación serás dirigido al home.",
+        footer: "A continuación serás dirigido a Mis órdenes",
         icon: "success",
         showConfirmButton: false,
       });
       setTimeout(() => {
         Swal.close();
-        goTo(`/`);
       }, 2000);
     } catch (er) {
       console.log(er);
@@ -113,13 +108,12 @@ export const AuthProvider = ({ children }) => {
       const userCredentials = await signInWithPopup(auth, provider);
       MySwal.fire({
         title: `¡Bienvenido ${userCredentials.user.displayName}!`,
-        footer: "A continuación serás dirigido al home.",
+        footer: "A continuación serás dirigido a Mis órdenes.",
         icon: "success",
         showConfirmButton: false,
       });
       setTimeout(() => {
         Swal.close();
-        goTo(`/`);
       }, 2000);
     } catch (er) {
       console.log(er);
@@ -150,13 +144,12 @@ export const AuthProvider = ({ children }) => {
       const userCredentials = await signInWithPopup(auth, provider);
       MySwal.fire({
         title: `¡Bienvenido ${userCredentials.user.displayName}!`,
-        footer: "A continuación serás dirigido al home.",
+        footer: "A continuación serás dirigido a Mis órdenes.",
         icon: "success",
         showConfirmButton: false,
       });
       setTimeout(() => {
         Swal.close();
-        goTo(`/`);
       }, 2000);
     } catch (er) {
       console.log(er);
@@ -209,7 +202,6 @@ export const AuthProvider = ({ children }) => {
     });
     setTimeout(() => {
       Swal.close();
-      goTo(`/login`);
     }, 2500);
   };
 
