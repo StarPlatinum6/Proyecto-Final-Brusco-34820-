@@ -80,7 +80,6 @@ const Checkout = () => {
       const outOfStock = await updateProductsStock(cartProducts, cart);
       if (outOfStock.length === 0) {
         const savedOrder = await saveOrder(order);
-        console.log(savedOrder.id);
         clearList();
         afterBuyNotification(savedOrder.id);
       } else {

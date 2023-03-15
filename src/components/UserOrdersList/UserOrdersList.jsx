@@ -42,9 +42,6 @@ const UserOrdersList = () => {
     return <ErrorState />;
   }
 
-  console.log(userOrdersFiltered.length);
-  console.log(Array.isArray(userOrdersFiltered));
-
   return (
     <>
       <h1 className="mt-8 text-4xl font-thin tracking-wider text-slate-500 font-serif">
