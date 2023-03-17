@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 import useAsyncFn from "../../hooks/useAsyncFn";
-import { getProducts } from "../../services/firestore/products";
+import { getProducts } from "../../services/firebase/firestore/products";
 
 import Btn from "../Btn/Btn";
 import CartWidget from "../CartWidget/CartWidget";

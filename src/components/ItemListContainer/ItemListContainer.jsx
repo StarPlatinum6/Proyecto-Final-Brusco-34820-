@@ -1,5 +1,5 @@
 import useAsyncFn from "../../hooks/useAsyncFn";
-import { getProducts } from "../../services/firestore/products";
+import { getProducts } from "../../services/firebase/firestore/products";
 
 import { useParams } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { doc, getDoc, getDocs, setDoc, collection } from "firebase/firestore";
-import { db } from "../firebase/firebaseconfig";
+import { db } from "../firebaseconfig";
 
 export const getOrders = () => {
   return new Promise((resolve, reject) => {

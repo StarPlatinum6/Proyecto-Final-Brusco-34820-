@@ -1,5 +1,5 @@
 import { query, collection, getDocs, where, documentId } from "firebase/firestore";
-import { db } from "../../services/firebase/firebaseconfig";
+import { db } from "../firebaseconfig";
 
 export const getCartDbProducts = async (cart) => {
   const cartProductsIds = cart.map((prod) => prod.id);

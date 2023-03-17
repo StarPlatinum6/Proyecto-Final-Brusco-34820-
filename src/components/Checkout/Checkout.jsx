@@ -11,9 +11,9 @@ import CartForm from "../CartForm/CartForm";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import { getCartDbProducts } from "../../services/firestore/cart";
-import { saveOrder } from "../../services/firestore/orders";
-import { updateProductsStock } from "../../services/firestore/products";
+import { getCartDbProducts } from "../../services/firebase/firestore/cart";
+import { saveOrder } from "../../services/firebase/firestore/orders";
+import { updateProductsStock } from "../../services/firebase/firestore/products";
 
 import { serverTimestamp } from "firebase/firestore";
 

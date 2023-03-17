@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 
 import useAsyncFn from "../../hooks/useAsyncFn";
-import { getProductById } from "../../services/firestore/products";
+import { getProductById } from "../../services/firebase/firestore/products";
 
 import { AuthContext } from "../../context/AuthContext";
 import { CartContext } from "../../context/CartContext";
