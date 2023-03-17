@@ -18,6 +18,8 @@
 
 ## 1. Descripción
 
+![](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/public/images/ephemer-gaming-flowchart.png)
+
 Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del curso de React.JS de Coderhouse. Creé una tienda en línea de artículos de computación, la misma es capaz de mostrar los productos desde una base de datos, incluyendo sus detalles. El usuario podrá navegar por cada uno de los artículos y realizar compras en la aplicación, la misma se encargará de gestionar una órden única, manipulando los datos del usuario y del pedido, también actualizará el stock de los items a medida que son comprados. Para poder realizar compras, el usuario deberá registrar una cuenta con mail y contraseña, o a través de proveedores como Google o GitHub, una vez logueado, podrá realizar compras con su cuenta y acceder a ellas desde el menú de usuario.
 
 <a name="technologies-es"></a>
