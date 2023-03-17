@@ -10,6 +10,7 @@ import CartForm from "../CartForm/CartForm";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { generatingOrderSwal, outOfStockSwal, errorSwal } from "../../services/sweetalert2/swalCalls";
 
 import { getCartDbProducts } from "../../services/firebase/firestore/cart";
 import { saveOrder } from "../../services/firebase/firestore/orders";
@@ -38,19 +39,9 @@ const Checkout = () => {
       sendOrder(formData);
     } catch (er) {
       console.error(er);
-      MySwal.fire({
-        title: "Oops...",
-        text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
-        icon: "error",
-        showConfirmButton: false,
-      });
+      errorSwal();
     } finally {
-      MySwal.fire({
-        title: "Generando orden...",
-        icon: "info",
-        footer: "¡No te vayas!",
-        showConfirmButton: false,
-      });
+      generatingOrderSwal();
     }
   };
 
@@ -83,11 +74,11 @@ const Checkout = () => {
         clearList();
         afterBuyNotification(savedOrder.id);
       } else {
-        outOfStockNotification();
+        outOfStockSwal();
       }
     } catch (error) {
       console.error(error);
-      errorNotification();
+      errorSwal();
     }
   };
 
@@ -122,25 +113,6 @@ const Checkout = () => {
       Swal.close();
       goTo(`/order/${orderId}`);
     }, 5000);
-  };
-
-  const outOfStockNotification = () => {
-    MySwal.fire({
-      title: "¡Auch!",
-      text: `Nos quedamos sin la cantidad deseada mientras finalizabas la compra!`,
-      icon: "error",
-      footer: "Por favor, actualizá la página para ver el stock actual.",
-      showConfirmButton: false,
-    });
-  };
-
-  const errorNotification = () => {
-    MySwal.fire({
-      title: "Oops...",
-      text: `Ha ocurrido un error, por favor, recarga la página y vuelve a intentarlo.`,
-      icon: "error",
-      showConfirmButton: false,
-    });
   };
 
   if (isLoading) {

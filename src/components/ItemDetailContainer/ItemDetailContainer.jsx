@@ -16,8 +16,7 @@ import Btn from "../Btn/Btn";
 import Loading from "../Loading/Loading";
 import ErrorState from "../ErrorState/ErrorState";
 
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
+import { addToCartSuccessSwal, addToCartZeroSwal, addToCartMoreThanStockSwal } from "../../services/sweetalert2/swalCalls"
 
 import { IconButton } from "@material-tailwind/react";
 import { BookmarkIcon } from "../Bookmarks/BookmarkIcons";
@@ -36,8 +35,6 @@ const ItemDetailContainer = () => {
 
   const isAdded = isInBookmarks(part?.id);
 
-  const MySwal = withReactContent(Swal);
-
   const handleOnAdd = (quantity, stockProd, setStock) => {
     deleteBookmark(part?.id);
     const unit = quantity <= 1 && quantity !== 0 ? "unidad" : "unidades";
@@ -49,51 +46,14 @@ const ItemDetailContainer = () => {
     if (quantity <= stockProd) {
       setStock((stockProd) => (stockProd -= quantity));
       if (quantity === 0) {
-        MySwal.fire({
-          buttonsStyling: false,
-          customClass: {
-            confirmButton:
-              "bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40 shadow-md shadow-indigo-700 text-slate-50 text-lg",
-          },
-          background: "#F1F5F9",
-          icon: "error",
-          title: "Oops...",
-          text: `Intentaste agregar ${quantity} ${unit} al carrito.`,
-          footer: "¡No quieras romper mi programa!",
-          confirmButtonText: "Grrr...",
-        });
+        addToCartZeroSwal(quantity, unit);
       } else {
-        MySwal.fire({
-          buttonsStyling: false,
-          customClass: {
-            confirmButton:
-              "bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40 shadow-md shadow-indigo-700 text-slate-50 text-lg",
-          },
-          background: "#F1F5F9",
-          icon: "success",
-          title: "¡Productos agregados con éxito!",
-          text: `Agregaste ${quantity} ${unit} al carrito. Stock restante: ${
-            stockProd - quantity
-          } ${unit2}.`,
-          confirmButtonText: "¡Entendido!",
-        });
+        addToCartSuccessSwal(quantity, unit, stockProd, unit2);
         setCartEmpty(false);
         addToCart(part, quantity);
       }
     } else {
-      MySwal.fire({
-        buttonsStyling: false,
-        customClass: {
-          confirmButton:
-            "bg-indigo-600 p-2 rounded-md m-1 font-light hover:bg-indigo-700 transition-all w-40 shadow-md shadow-indigo-700 text-slate-50 text-lg",
-        },
-        background: "#F1F5F9",
-        icon: "error",
-        title: "Tuvimos un problema...",
-        text: `Intentaste agregar ${quantity} ${unit} al carrito. Pero nuestro stock restante es de ${stockProd} ${unit3}.`,
-        footer: "¡Disculpa las molestias!",
-        confirmButtonText: "Grrr...",
-      });
+      addToCartMoreThanStockSwal(quantity, unit, stockProd, unit3);
     }
   };
 
