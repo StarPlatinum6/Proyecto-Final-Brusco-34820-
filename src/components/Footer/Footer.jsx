@@ -3,7 +3,7 @@ import OrderCheck from "../OrderCheck/OrderCheck";
 const Footer = () => {
   return (
     <>
-      <div className="h-40 flex items-center justify-center bg-slate-100 sm:text-lg md:text-2xl px-2">
+      <div className="h-20 flex items-center justify-center bg-slate-100 sm:text-lg md:text-2xl px-2">
         <span className="animate-pulse text-slate-600 pr-1">
           Diseñado en React.JS
         </span>
@@ -13,7 +13,7 @@ const Footer = () => {
           alt=""
         ></img>
         <span className="animate-pulse text-slate-600 pl-1">
-          por Nicolás Brusco para la comisión 34820
+          por Nicolás Brusco
         </span>
       </div>
       <OrderCheck />

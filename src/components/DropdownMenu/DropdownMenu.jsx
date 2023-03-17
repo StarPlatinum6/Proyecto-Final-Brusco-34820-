@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import HomeIcon from "../Icons/NavIcons/HomeIcon";
 
 import { NavLink } from "react-router-dom";
 
@@ -27,7 +28,18 @@ export default function DropdownMenu({ categories }) {
           leaveTo="transform opacity-0 scale-95"
         >
           <Menu.Items className="absolute lg:right-0 mt-2 w-56 origin-top-right divide-y font-serif divide-slate-300 rounded-md bg-slate-50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div className="px-1 py-1"></div>
+            <Menu.Item>
+              <NavLink to={`/`}>
+                <div className="px-1 py-1 ">
+                  <div className="text-slate-600 hover:text-slate-50 hover:bg-indigo-400/70 group flex flex-row w-full items-center rounded-md px-2 py-2 text-sm">
+                    <button className="flex uppercase">
+                      <HomeIcon className={"ml-1 mr-2 text-indigo-600"} />
+                      Todas
+                    </button>
+                  </div>
+                </div>
+              </NavLink>
+            </Menu.Item>
             <div className="px-1 py-1 ">
               {categories.map((cat, index) => {
                 return (

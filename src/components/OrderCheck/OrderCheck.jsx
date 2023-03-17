@@ -21,7 +21,7 @@ const OrderCheck = () => {
 
   return (
     <form>
-      <div className="flex items-center justify-center bg-slate-100 md:text-2xl -mt-10 pb-4 px-2">
+      <div className="flex items-center justify-center bg-slate-100 md:text-2xl pb-4 px-2">
         <input
           type="text"
           placeholder="Ingrese Order ID para ver estado"
