@@ -2,9 +2,6 @@ import { NavLink } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-// import { getDocs, collection } from "firebase/firestore";
-// import { db } from "../../services/firebase/firebaseconfig";
-
 import useAsyncFn from "../../hooks/useAsyncFn";
 import { getProducts } from "../../services/firestore/products";
 
@@ -45,16 +42,20 @@ const NavBar = () => {
         </NavLink>
         <div className="flex items-center gap-4">
           <DropdownMenu categories={categories} />
-          <NavLink
-            to="/cart"
-            className={({ isActive }) =>
-              isActive
-                ? "bg-slate-400 rounded-md shadow-lg shadow-slate-400"
-                : ""
-            }
-          >
-            <CartWidget className="flex justify-center items-center hover:bg-slate-400 hover:border-slate-400 hover:shadow-slate-400 rounded-md hover:shadow-lg transition-all duration-300 mx-1 py-2 w-20 min-w-fit opacity-90" />
-          </NavLink>
+          {user ? (
+            <NavLink
+              to="/cart"
+              className={({ isActive }) =>
+                isActive
+                  ? "bg-slate-400 rounded-md shadow-lg shadow-slate-400"
+                  : ""
+              }
+            >
+              <CartWidget className="flex justify-center items-center hover:bg-slate-400 hover:border-slate-400 hover:shadow-slate-400 rounded-md hover:shadow-lg transition-all duration-300 mx-1 py-2 w-20 min-w-fit opacity-90" />
+            </NavLink>
+          ) : (
+            <></>
+          )}
           <div className="px-1 py-1 flex flex-col sm:flex-row sm:gap-2 font-serif">
             {user ? (
               <DropdownUser />
