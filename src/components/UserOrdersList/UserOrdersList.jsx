@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../context/AuthContext";
 
-import { getUserOrders } from "../../services/firestore/orders";
+import { getUserOrders } from "../../services/firebase/firestore/orders";
 
 import UserOrder from "../UserOrder/UserOrder";
 import Btn from "../Btn/Btn";

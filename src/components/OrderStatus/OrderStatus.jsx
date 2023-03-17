@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-import { getOrderById } from "../../services/firestore/orders";
+import { getOrderById } from "../../services/firebase/firestore/orders";
 
 import Loading from "../Loading/Loading";
 import ErrorState from "../ErrorState/ErrorState";

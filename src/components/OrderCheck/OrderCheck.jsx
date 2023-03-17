@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getOrders } from "../../services/firestore/orders";
+import { getOrders } from "../../services/firebase/firestore/orders";
 
 import Btn from "../Btn/Btn";
 
