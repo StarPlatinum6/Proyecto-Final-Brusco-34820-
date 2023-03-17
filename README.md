@@ -109,7 +109,7 @@ Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
 Ephemer Gaming is an e-commerce project developed for commission 34820 of the Coderhouse React.JS course. I created an online store of computer articles, able to display products from a database, including their details. The user will be able to browse each of the items and make purchases, the app will be responsible for managing a orders, manipulating user and order data, it will also update the item stock as they are purchased. In order to make purchases, the user must register an account with email and password, or using providers such as Google or GitHub, once logged in, users can make purchases with their account and access them from the user menu.
 
-<a name="flowchart-es"></a>
+<a name="flowchart-en"></a>
 
 ## 2. Flowchart
 
