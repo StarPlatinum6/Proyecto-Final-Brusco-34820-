@@ -19,11 +19,11 @@ const ValidationSchema = yup.object().shape({
   password: yup
     .string()
     .required("*Obligatorio")
-    .min(8, "*Muy corta")
-    .max(32, "*Muy larga")
+    .min(8, "*Min 8 caracteres")
+    .max(32, "*Max 32 caracteres")
     .matches(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/, //eslint-disable-line
-      "*Muy débil"
+      "*Contraseña muy débil"
     ),
   passwordConfirmation: yup
     .string()
@@ -67,6 +67,9 @@ const SignUp = () => {
             </p>
           </NavLink>
           <Formik
+            validateOnBlur={false}
+            validateOnChange={false}
+            validateOnMount={false}
             initialValues={{
               fullName: "",
               email: "",
@@ -77,7 +80,7 @@ const SignUp = () => {
             onSubmit={signUp}
           >
             {({ errors, touched }) => (
-              <Form className="-mt-4 m-auto">
+              <Form className="-mt-4 m-auto pb-8">
                 <div className="-space-y-px rounded-md shadow-sm">
                   <div className="flex justify-center items-center relative -space-y-px rounded-md shadow-sm">
                     <Field
@@ -86,7 +89,7 @@ const SignUp = () => {
                       className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm sm:text-base"
                     />
                     {errors.fullName && touched.fullName ? (
-                      <div className="absolute -right-4 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                      <div className="absolute -right-2 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                         {errors.fullName}
                       </div>
                     ) : null}
@@ -98,7 +101,7 @@ const SignUp = () => {
                       className="relative block w-full appearance-none rounded-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm sm:text-base"
                     />
                     {errors.email && touched.email ? (
-                      <div className="absolute -right-4 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                      <div className="absolute -right-2 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                         {errors.email}
                       </div>
                     ) : null}
@@ -110,7 +113,7 @@ const SignUp = () => {
                       className="relative block w-full appearance-none rounded-none  border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm sm:text-base"
                     />
                     {errors.photoURL && touched.photoURL ? (
-                      <div className="absolute -right-4 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                      <div className="absolute -right-2 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                         {errors.photoURL}
                       </div>
                     ) : null}
@@ -123,9 +126,18 @@ const SignUp = () => {
                       className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 text-sm sm:text-base"
                     />
                     {errors.password && touched.password ? (
-                      <div className="absolute -right-4 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
-                        {errors.password}
-                      </div>
+                      <>
+                        <div className="absolute -right-2 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                          {errors.password}
+                        </div>
+                        <div className="absolute text-xs sm:text-sm top-40 mt-2 p-2 bg-red-100 hover:bg-red-200 transition-all text-red-800 rounded">
+                          <p>
+                            La longitud de la contraseña debe ser entre 8 y 32 caracteres y contener al menos una letra
+                            mayúscula y minúscula, un número y un
+                            caracter especial.
+                          </p>
+                        </div>
+                      </>
                     ) : null}
                   </div>
                   <div className="flex justify-center items-center relative">
@@ -137,7 +149,7 @@ const SignUp = () => {
                     />
                     {errors.passwordConfirmation &&
                     touched.passwordConfirmation ? (
-                      <div className="absolute -right-4 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
+                      <div className="absolute -right-2 mr-2 font-sans font-light text-xs sm:text-sm text-red-600 w-28 z-50">
                         {errors.passwordConfirmation}
                       </div>
                     ) : null}
@@ -165,6 +177,6 @@ const SignUp = () => {
       </div>
     </>
   );
-}
+};
 
 export default SignUp;
