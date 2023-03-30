@@ -13,7 +13,8 @@
 3. [Tecnologías utilizadas](#technologies-es)
 4. [Autor](#author-es)
 5. [Ejecutar localmente](#run-es)
-6. [Deploy](#deploy-es)
+6. [Variables de Entorno](#env-es)
+7. [Deploy](#deploy-es)
 
 <a name="description-es"></a>
 
@@ -77,9 +78,15 @@ $ npm install
 $ npm start
 ```
 
+<a name="env-es"></a>
+
+## 6. Variables de Entorno
+
+Ver [`.env.example`](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/.env.example) para un ejemplo.
+
 <a name="deploy-es"></a>
 
-## 6. Deploy
+## 7. Deploy
 
 Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 
@@ -100,7 +107,8 @@ Para ver el e-commerce en funcionamiento, ingresar al siguiente link:
 3. [Tech Stack](#technologies-en)
 4. [Author](#author)
 5. [Run locally](#run-en)
-6. [Deploy](#deploy-en)
+6. [Environment Variables](#env-en)
+7. [Deploy](#deploy-en)
 
 <a name="description-en"></a>
 
@@ -165,9 +173,15 @@ $ npm install
 $ npm start
 ```
 
+<a name="env-en"></a>
+
+## 6. Environment Variables
+
+See [`.env.example`](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/.env.example) for an example.
+
 <a name="deploy-en"></a>
 
-## 6. Deploy
+## 7. Deploy
 
 To test the e-commerce app, access through the following link:
 
