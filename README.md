@@ -1,6 +1,6 @@
 # Ephemer Gaming
 
-![](https://github.com/StarPlatinum6/Proyecto-Final-Brusco-34820/blob/main/public/images/EphemerGaming.gif)
+![](https://github.com/nbrusco/Proyecto-Final-Brusco-34820/blob/main/public/images/EphemerGaming.gif)
 
 [Español](#es) - [English](#en)
 
@@ -26,7 +26,7 @@ Ephemer Gaming es un proyecto e-commerce realizado para la comisión 34820 del c
 
 ## 2. Diagrama de Flujo
 
-![](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/public/images/ephemer-gaming-flowchart-es.png)
+![](https://github.com/nbrusco/Ephemer-Gaming/blob/main/public/images/ephemer-gaming-flowchart-es.png)
 
 <a name="technologies-es"></a>
 
@@ -63,7 +63,7 @@ Nicolás Brusco | Desarrollador web Front-End / React.JS
 
 |Redes | Enlace |
 |---------------------------|----------------|
-|GitHub |[StarPlatinum6](https://github.com/StarPlatinum6) |
+|GitHub |[nbrusco](https://github.com/nbrusco) |
 |Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
 |Instagram |[nicobrusco](https://instagram.com/nicobrusco)
 
@@ -72,7 +72,7 @@ Nicolás Brusco | Desarrollador web Front-End / React.JS
 ## 5. Ejecutar localmente
 
 ```bash
-$ git clone https://github.com/StarPlatinum6/Ephemer-Gaming.git
+$ git clone https://github.com/nbrusco/Ephemer-Gaming.git
 $ cd Ephemer-Gaming
 $ npm install
 $ npm start
@@ -82,7 +82,7 @@ $ npm start
 
 ## 6. Variables de Entorno
 
-Ver [`.env.example`](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/.env.example) para un ejemplo.
+Ver [`.env.example`](https://github.com/nbrusco/Ephemer-Gaming/blob/main/.env.example) para un ejemplo.
 
 <a name="deploy-es"></a>
 
@@ -121,7 +121,7 @@ Ephemer Gaming is an e-commerce project developed for commission 34820 of the Co
 
 ## 2. Flowchart
 
-![](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/public/images/ephemer-gaming-flowchart.png)
+![](https://github.com/nbrusco/Ephemer-Gaming/blob/main/public/images/ephemer-gaming-flowchart.png)
 
 <a name="technologies-en"></a>
 
@@ -158,7 +158,7 @@ Nicolás Brusco | Front-End web Developer / React.JS
 
 |Platform | Link |
 |---------------------------|----------------|
-|GitHub |[StarPlatinum6](https://github.com/StarPlatinum6) |
+|GitHub |[nbrusco](https://github.com/nbrusco) |
 |Linkedin |[Nicolas Brusco](https://www.linkedin.com/in/nicolasbrusco)|
 |Instagram |[nicobrusco](https://instagram.com/nicobrusco)
 
@@ -167,7 +167,7 @@ Nicolás Brusco | Front-End web Developer / React.JS
 ## 5. Run locally
 
 ```bash
-$ git clone https://github.com/StarPlatinum6/Ephemer-Gaming.git
+$ git clone https://github.com/nbrusco/Ephemer-Gaming.git
 $ cd Ephemer-Gaming
 $ npm install
 $ npm start
@@ -177,7 +177,7 @@ $ npm start
 
 ## 6. Environment Variables
 
-See [`.env.example`](https://github.com/StarPlatinum6/Ephemer-Gaming/blob/main/.env.example) for an example.
+See [`.env.example`](https://github.com/nbrusco/Ephemer-Gaming/blob/main/.env.example) for an example.
 
 <a name="deploy-en"></a>
 
